@@ -11,6 +11,23 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('theme.home', [
+        'posts' => App\Post::orderBy('id', 'desc')->get()
+    ]);
+})->name('home');
+
+Route::get('/posts/{post}', function (App\Post $post) {
+    return view('theme.post-show', [
+        'post' => $post
+    ]);
+})->name('post.show');
+
+Route::get('/categories/{category}/posts', function (App\Category $category) {
+    return view('theme.post-list', [
+        'posts' => $category->posts()->orderBy('id', 'desc')->get()
+    ]);
+})->name('category.post');
+

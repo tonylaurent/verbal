@@ -11,8 +11,6 @@
 |
 */
 
-Auth::routes();
-
 Route::get('/', function () {
     return view('theme.home', [
         'posts' => App\Post::orderBy('id', 'desc')->get()

@@ -14,13 +14,7 @@ He respect the BREAD concept for all commands.
 Installation
 ------------
 
-## Clone repository
-
-    git clone git@github.com:tonylaurent/verbal.git
-
-## Install depedencies
-
-    composer install
+    composer create-project --prefer-dist tonylaurent/verbal verbal
 
 Configuration
 -------------

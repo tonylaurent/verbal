@@ -1,7 +1,7 @@
 {
     "name": "tonylaurent/verbal",
-    "description": "Minimalist blog engine driven by command line.",
-    "keywords": ["verbal", "blog", "minimalist"],
+    "description": "A minimalist blog engine driven by command line.",
+    "keywords": ["verbal", "blog", "minimalist", "command"],
     "license": "MIT",
     "type": "project",
     "require": {

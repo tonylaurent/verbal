@@ -1,17 +1,9 @@
 <?php
 namespace App\Console\Commands;
 
-use Validator;
-
-use Illuminate\Http\File;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 
-use App\User;
-use App\Post;
 use App\Tag;
-use App\Events\PostCreatedEvent;
-use App\Notifications\PostCreatedNotification;
 
 class TagBrowse extends Command
 {
@@ -21,10 +13,10 @@ class TagBrowse extends Command
      * @var string
      */
     protected $signature = 'tag:browse
-        {--show=* : The columns to show}
-        {--hide=* : The columns to hide}
-        {--sort= : The column name for sorting}
-        {--reverse : Sort in reverse order}
+        {--show=* : Show the specified column}
+        {--hide=* : Hide the specified column}
+        {--sort= : Sort by the specified column}
+        {--reverse : Reverse sort order}
     ';
 
     /**
@@ -53,33 +45,41 @@ class TagBrowse extends Command
     {
         $sort = $this->option('sort');
         $reverse = $this->option('reverse');
+        $show = $this->option('show');
+        $hide = $this->option('hide');
 
-        $headers = [
-            '#',
-            'Name',
-            'Description',
-            'Created at',
-            'Updated at'
-        ];
-
-        $categories = Tag::select(
+        $columns = [
             'id',
             'name',
             'description',
             'created_at',
             'updated_at'
-        )
-        ->when($sort,
-            function ($query) use ($sort) {
-                $query->orderBy($sort);
-            }
-        )
-        ->get();
+        ];
+
+        if ($show) {
+            $columns = $show;
+        }
+
+        if ($hide) {
+            $columns = array_diff($columns, $hide);
+        }
+
+        if (!$columns) {
+            return $this->comment('No column to show.');
+        }
+
+        $tags = Tag::select($columns)
+            ->when($sort,
+                function ($query) use ($sort) {
+                    $query->orderBy($sort);
+                }
+            )
+            ->get();
 
         if ($reverse) {
             $tags = $tags->reverse();
         }
 
-        $this->table($headers, $tags);
+        $this->table($columns, $tags);
     }
 }

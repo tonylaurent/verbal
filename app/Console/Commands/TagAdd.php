@@ -13,14 +13,14 @@ use App\Notifications\PostCreatedNotification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 
-class TagCreate extends Command
+class TagAdd extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'tag:create
+    protected $signature = 'tag:add
         {--i|interactive : Enable interactive mode}
         {--name= : The name of the tag}
         {--description= : The description of the tag}

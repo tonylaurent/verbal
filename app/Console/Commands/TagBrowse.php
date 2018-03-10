@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Storage;
 
 use App\User;
 use App\Post;
-use App\Category;
+use App\Tag;
 use App\Events\PostCreatedEvent;
 use App\Notifications\PostCreatedNotification;
 
-class CategoryBrowse extends Command
+class TagBrowse extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'category:browse
+    protected $signature = 'tag:browse
         {--show=* : The columns to show}
         {--hide=* : The columns to hide}
         {--sort= : The column name for sorting}
@@ -32,7 +32,7 @@ class CategoryBrowse extends Command
      *
      * @var string
      */
-    protected $description = 'Browse categories';
+    protected $description = 'Browse tags';
 
     /**
      * Create a new command instance.
@@ -62,7 +62,7 @@ class CategoryBrowse extends Command
             'Updated at'
         ];
 
-        $categories = Category::select(
+        $categories = Tag::select(
             'id',
             'name',
             'description',
@@ -77,9 +77,9 @@ class CategoryBrowse extends Command
         ->get();
 
         if ($reverse) {
-            $categories = $categories->reverse();
+            $tags = $tags->reverse();
         }
 
-        $this->table($headers, $categories);
+        $this->table($headers, $tags);
     }
 }

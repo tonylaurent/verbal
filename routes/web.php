@@ -23,9 +23,9 @@ Route::get('/posts/{post}', function (App\Post $post) {
     ]);
 })->name('post.show');
 
-Route::get('/categories/{category}/posts', function (App\Category $category) {
+Route::get('/tags/{tag}/posts', function (App\Tag $tag) {
     return view('theme.post-list', [
-        'posts' => $category->posts()->orderBy('id', 'desc')->get()
+        'posts' => $tag->posts()->orderBy('id', 'desc')->get()
     ]);
-})->name('category.post');
+})->name('tag.post');
 

@@ -7,7 +7,7 @@ use Validator;
 
 use App\User;
 use App\Post;
-use App\Category;
+use App\Tag;
 use App\Events\PostCreatedEvent;
 use App\Notifications\PostCreatedNotification;
 
@@ -24,7 +24,7 @@ class PostCreate extends Command
     protected $signature = 'post:create
         {--title= : The title of the post}
         {--content= : The content of the post}
-        {--category= : The category of the post}
+        {--tag= : The tag of the post}
         {--image= : The image of the post}
         {--i|interactive : Enable interactive mode}
     ';
@@ -54,21 +54,21 @@ class PostCreate extends Command
     public function handle()
     {
         if ($this->option('interactive')) {
-            $categories = Category::get()
+            $tags = Tag::get()
                 ->pluck('name')
                 ->toArray();
 
             $inputs = [
                 'title' => $title = $this->ask('Title?'),
                 'content' => $this->ask('Content?'),
-                'category' => $this->choice('Category?', $categories),
+                'tag' => $this->choice('Tag?', $tags),
                 'image' => $this->ask('Image path?')
             ];
         } else {
             $inputs = [
                 'title' => $this->option('title'),
                 'content' => $this->option('content'),
-                'category' => $this->option('category'),
+                'tag' => $this->option('tag'),
                 'image' => $this->option('image')
             ];
         }
@@ -78,7 +78,7 @@ class PostCreate extends Command
             [
                 'title' => 'required',
                 'content' => 'required',
-                'category' => 'required'
+                'tag' => 'required'
             ]
         );
 
@@ -90,7 +90,7 @@ class PostCreate extends Command
             exit;
         }
 
-        $categories = Category::where('name', $inputs['category'])->get();
+        $tags = Tag::where('name', $inputs['tag'])->get();
 
         if ($inputs['image']) {
             $inputs['image_path'] = Storage::disk('public')
@@ -102,8 +102,8 @@ class PostCreate extends Command
         $post->save();
 
         $post
-            ->categories()
-            ->attach($categories);
+            ->tags()
+            ->attach($tags);
 
         $this->info('Post created!');
     }

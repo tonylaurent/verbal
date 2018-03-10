@@ -7,7 +7,7 @@ use Schema;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Category;
+use App\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,8 +18,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (Schema::hasTable('categories')) {
-            View::share('categories', Category::all());
+        if (Schema::hasTable('tags')) {
+            View::share('tags', Tag::all());
         }
     }
 

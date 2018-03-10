@@ -42,10 +42,10 @@
               Home
           </a>
 
-          @foreach ($categories as $category)
+          @foreach ($tags as $tag)
             <a class="blog-nav-item"
-                    href="{{ route('category.post', ['category' => $category]) }}">
-                {{ $category->name }}
+                    href="{{ route('tag.post', ['tag' => $tag]) }}">
+                {{ $tag->name }}
             </a>
           @endforeach
 

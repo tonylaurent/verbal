@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\User;
-use App\Category;
+use App\Tag;
 
 class Post extends Model
 {
@@ -29,11 +29,11 @@ class Post extends Model
     }
 
     /**
-     * The categories that belong to the post.
+     * The tags that belong to the post.
      */
-    public function categories()
+    public function tags()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Tag::class);
     }
 
     /**

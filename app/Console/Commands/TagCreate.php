@@ -6,24 +6,24 @@ use Validator;
 
 use App\User;
 use App\Post;
-use App\Category;
+use App\Tag;
 use App\Events\PostCreatedEvent;
 use App\Notifications\PostCreatedNotification;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 
-class CategoryCreate extends Command
+class TagCreate extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'category:create
+    protected $signature = 'tag:create
         {--i|interactive : Enable interactive mode}
-        {--name= : The name of the category}
-        {--description= : The description of the category}
+        {--name= : The name of the tag}
+        {--description= : The description of the tag}
     ';
 
     /**
@@ -31,7 +31,7 @@ class CategoryCreate extends Command
      *
      * @var string
      */
-    protected $description = 'Create a category';
+    protected $description = 'Create a tag';
 
     /**
      * Create a new command instance.
@@ -78,10 +78,10 @@ class CategoryCreate extends Command
             exit;
         }
 
-        $category = (new Category)
+        $tag = (new Tag)
             ->fill($inputs)
             ->save();
 
-        $this->info('Category created!');
+        $this->info('Tag created!');
     }
 }

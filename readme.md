@@ -1,55 +1,41 @@
-Verbal
-======
-
-\ \   / /__ _ __| |__   __ _| |
- \ \ / / _ \ '__| '_ \ / _` | |
-  \ V /  __/ |  | |_) | (_| | |
-   \_/ \___|_|  |_.__/ \__,_|_|
+About
+-----
 
 Verbal is the blog engine for command lines addicts.
-He is useful as a bot to automate publishing.
-He have an interactive mode.
-He respect the BREAD concept for all commands.
-
-Installation
-------------
-
-    composer create-project --prefer-dist tonylaurent/verbal verbal
-
-Configuration
--------------
 
 Usage
 -----
 
-## Posts
+### Tags
 
-Browse posts:
+>Tags categorize yours contents.
 
-    verbal post:browse
+**Browse all tags:**
 
-Add a post:
+    verbal tag:browse [OPTIONS]
 
-    verbal post:add
+    --show=COLUMN   Show the specified column (multiple values allowed)
+    --hide=COLUMN   Hide the specified column (multiple values allowed)
+    --sort=COLUMN   Sort by the specified column
+    --reverse       Reverse sort order
 
-## Tags
+**Add a new tag:**
 
-Browse tags:
+    verbal tag:add [OPTIONS]
 
-    verbal tag:browse
+    -i, --interactive           Enable interactive mode
+    --name[=NAME]               The name of the tag
+    --description[=DESCRIPTION] The description of the tag
 
-Add a tag:
 
-    verbal tag:add
+**Delete a tag with:**
 
-Shortcuts
----------
+    tag:delete ID [OPTIONS]
 
-As Verbal use the BREAD concept (Browse, Read, Edit, Add, Delete),
-you can type the first letter of the action for most commands.
+    Arguments:
+    id
 
-    verbal post:b
-    verbal post:r
-    verbal post:e
-    verbal post:a
-    verbal post:d
+    Options:
+    -f, --force   Skip confirmation
+
+

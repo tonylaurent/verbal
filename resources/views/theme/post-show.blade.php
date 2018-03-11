@@ -1,15 +1,14 @@
 @extends('theme.layout')
 
+@section('title', $post->title)
+@section('description', $post->summary)
+
 @section('content')
-    <div class="col-sm-8 blog-main">
-        @if ($post->image_path)
-            <img src="/storage/{{ $post->image_path }}" style="width: 100%" />
-        @endif
+    @if ($post->image_path)
+        <img src="/storage/{{ $post->image_path }}" style="width: 100%" />
+    @endif
 
-        <h1>{{ $post->title }}</h1>
-
-        <div>
-            {{ $post->content }}
-        </div>
+    <div>
+        {{ $post->content }}
     </div>
 @endsection

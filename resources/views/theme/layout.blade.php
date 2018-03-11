@@ -55,21 +55,23 @@
     <div class="container">
       <div class="blog-header">
         <h1 class="blog-title">
-            {{ config('app.name') }}
+            @yield('title')
         </h1>
 
         <p class="lead blog-description">
-            The official example template of
-            creating a blog with Bootstrap.
+            @yield('description')
         </p>
-      </div>
-
+        
+      </div>          
+        
       <div class="row">
-        @yield('content')
-
+        <div class="col-sm-8 blog-main">    
+            @yield('content')
+        </div>        
+    
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
             @include('theme.archive')
-        </div>
+        </div>         
       </div>
 
     </div><!-- /.container -->

@@ -1,14 +1,15 @@
 @extends('theme.layout')
 
-@section('content')
-    <div class="col-sm-8 blog-main">
-        @each('theme.post-block', $posts, 'post')
+@section('title', config('app.name'))
+@section('description', 'The official example template of creating a blog with Bootstrap.')
 
-      <nav>
+@section('content')
+    @each('theme.post-block', $posts, 'post')
+
+    <nav>
         <ul class="pager">
           <li><a href="#">Previous</a></li>
           <li><a href="#">Next</a></li>
         </ul>
-      </nav>
-    </div>
+    </nav>
 @endsection

@@ -4,11 +4,11 @@
     </h2>
 
     <p class="blog-post-meta">
-        January 1, 2014 by
+        {{ $post->created_at }}
     </p>
 
     <div>
-        {{ $post->content }}
+        {{ $post->summary }}
     </div>
 
     <a href="{{ route('post.show', ['post' => $post]) }}">

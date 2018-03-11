@@ -20,6 +20,13 @@ _Options_
 `--sort=COLUMN` Sort by the specified column  
 `--reverse` Reverse sort order  
 
+#### Read an existing tag
+
+    $ verbal tag:read ID
+
+_Arguments_  
+`ID` The ID of the tag 
+
 #### Edit an existing tag
 
     $ verbal tag:edit ID [OPTIONS]

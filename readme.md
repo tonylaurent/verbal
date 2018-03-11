@@ -28,7 +28,6 @@ _Arguments_
 `NAME` The name of the tag  
 
 _Options_  
-`-i, --interactive` Enable interactive mode  
 `--description[=DESCRIPTION]` The description of the tag  
 
 

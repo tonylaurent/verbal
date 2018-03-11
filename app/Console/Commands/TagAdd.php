@@ -21,8 +21,7 @@ class TagAdd extends Command
      * @var string
      */
     protected $signature = 'tag:add
-        {--i|interactive : Enable interactive mode}
-        {--name= : The name of the tag}
+        {name : The name of the tag}
         {--description= : The description of the tag}
     ';
 
@@ -31,7 +30,7 @@ class TagAdd extends Command
      *
      * @var string
      */
-    protected $description = 'Create a tag';
+    protected $description = 'Add a tag';
 
     /**
      * Create a new command instance.
@@ -50,33 +49,10 @@ class TagAdd extends Command
      */
     public function handle()
     {
-        if ($this->option('interactive')) {
-            $inputs = [
-                'name' => $title = $this->ask('Name?'),
-                'description' => $this->ask('Description?')
-            ];
-        } else {
-            $inputs = [
-                'name' => $this->option('name'),
-                'description' => $this->option('description')
-            ];
-        }
-
-        $validator = Validator::make(
-            $inputs,
-            [
-                'name' => 'required',
-                'description' => 'required',
-            ]
-        );
-
-        if ($validator->fails()) {
-            foreach ($validator->errors()->all() as $message) {
-                $this->error($message);
-            }
-
-            exit;
-        }
+        $inputs = [
+            'name' => $this->argument('name'),
+            'description' => $this->option('description')
+        ];
 
         $tag = (new Tag)
             ->fill($inputs)

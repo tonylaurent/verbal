@@ -9,6 +9,6 @@
     @endif
 
     <div>
-        {{ $post->content }}
+        {!! $post->content !!}
     </div>
 @endsection

@@ -23,7 +23,7 @@ class TagRead extends Command
      *
      * @var string
      */
-    protected $description = 'Read a tag';
+    protected $description = 'Read an existing tag';
 
     /**
      * Create a new command instance.

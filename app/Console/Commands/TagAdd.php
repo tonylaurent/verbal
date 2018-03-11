@@ -22,7 +22,7 @@ class TagAdd extends Command
      *
      * @var string
      */
-    protected $description = 'Add a tag';
+    protected $description = 'Add a new tag';
 
     /**
      * Create a new command instance.

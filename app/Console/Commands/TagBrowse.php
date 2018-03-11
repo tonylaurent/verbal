@@ -24,7 +24,7 @@ class TagBrowse extends Command
      *
      * @var string
      */
-    protected $description = 'Browse tags';
+    protected $description = 'Browse all tags';
 
     /**
      * Create a new command instance.

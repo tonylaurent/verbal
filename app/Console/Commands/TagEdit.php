@@ -23,7 +23,7 @@ class TagEdit extends Command
      *
      * @var string
      */
-    protected $description = 'Edit a tag';
+    protected $description = 'Edit an existing tag';
 
     /**
      * Create a new command instance.

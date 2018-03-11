@@ -22,7 +22,7 @@ class TagDelete extends Command
      *
      * @var string
      */
-    protected $description = 'Delete a tag';
+    protected $description = 'Delete an existing tag';
 
     /**
      * Create a new command instance.

@@ -41,7 +41,13 @@ class TagDelete extends Command
      */
     public function handle()
     {
-        $tag = Tag::find($this->argument('id'));
+        $tag = Tag::find(
+            $this->argument('id')
+        );
+        
+        if (!$tag) {
+            return $this->comment("Tag not found.");
+        }
 
         if (!$this->option('force')) {
             if (!$this->confirm('Are you sure to delete?')) {

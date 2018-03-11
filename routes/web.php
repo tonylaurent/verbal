@@ -12,8 +12,12 @@
 */
 
 Route::get('/', function () {
+    $posts = App\Post::latest()
+        ->take(5)
+        ->get();
+    
     return view('theme.home', [
-        'posts' => App\Post::orderBy('id', 'desc')->get()
+        'posts' => $posts
     ]);
 })->name('home');
 

@@ -50,6 +50,6 @@ class TagAdd extends Command
         $tag->fill($inputs);
         $tag->save();
 
-        $this->info("Tag “{$tag->name}” created.");
+        $this->info("Tag “{$tag->name}” added.");
     }
 }

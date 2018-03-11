@@ -56,6 +56,6 @@ _Arguments_
 `ID` The ID of the tag  
 
 _Options_  
-`-f, --force` Skip confirmation  
+`--force` Skip confirmation  
 
 

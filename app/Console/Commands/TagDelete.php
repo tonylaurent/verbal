@@ -14,7 +14,7 @@ class TagDelete extends Command
      */
     protected $signature = 'tag:delete
         {id : The ID of the tag}
-        {--f|force : Skip confirmation}
+        {--force : Skip confirmation}
     ';
 
     /**

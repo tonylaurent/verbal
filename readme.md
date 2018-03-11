@@ -8,6 +8,7 @@ Documentation
 
 - [Posts](#posts)
     - [Browse all posts](#browse-all-posts)
+    - [Add a new post](#add-a-new-post)
 - [Tags](#tags)
     - [Browse all tags](#browse-all-tags)
     - [Read an exising tag](#read-an-exising-tag)

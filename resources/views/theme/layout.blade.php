@@ -48,10 +48,6 @@
                 {{ $tag->name }}
             </a>
           @endforeach
-
-          <a class="blog-nav-item" href="#">
-              About
-          </a>
         </nav>
       </div>
     </div>
@@ -72,7 +68,6 @@
         @yield('content')
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-            @include('theme.about')
             @include('theme.archive')
         </div>
       </div>

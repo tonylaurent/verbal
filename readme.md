@@ -6,12 +6,26 @@ Verbal is the blog engine for command lines addicts.
 Documentation
 -------------
 
+- [Posts](#posts)
+    - [Browse all posts](#browse-all-posts)
 - [Tags](#tags)
     - [Browse all tags](#browse-all-tags)
     - [Read an exising tag](#read-an-exising-tag)
     - [Edit an exising tag](#edit-an-exising-tag)
     - [Add a new tag](#add-a-new-tag)
     - [Delete an exising tag](#delete-an-exising-tag)
+
+### Posts
+
+#### Browse all posts
+
+    $ verbal post:browse [OPTIONS]
+
+_Options_  
+`--show=COLUMN` Show the specified column (multiple values allowed)  
+`--hide=COLUMN` Hide the specified column (multiple values allowed)  
+`--sort=COLUMN` Sort by the specified column  
+`--reverse` Reverse sort order
 
 ### Tags
 

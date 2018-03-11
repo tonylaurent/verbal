@@ -3,8 +3,15 @@ About
 
 Verbal is the blog engine for command lines addicts.
 
-Usage
------
+Documentation
+-------------
+
+- [Tags](#tags)
+    - [Browse all tags](#browse-all-tags)
+    - [Read an exising tag](#read-an-exising-tag)
+    - [Edit an exising tag](#edit-an-exising-tag)
+    - [Add a new tag](#add-a-new-tag)
+    - [Delete an exising tag](#delete-an-exising-tag)
 
 ### Tags
 

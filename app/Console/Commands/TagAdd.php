@@ -2,16 +2,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Validator;
 
-use App\User;
-use App\Post;
 use App\Tag;
-use App\Events\PostCreatedEvent;
-use App\Notifications\PostCreatedNotification;
-
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\File;
 
 class TagAdd extends Command
 {
@@ -54,10 +46,10 @@ class TagAdd extends Command
             'description' => $this->option('description')
         ];
 
-        $tag = (new Tag)
-            ->fill($inputs)
-            ->save();
+        $tag = new Tag;
+        $tag->fill($inputs);
+        $tag->save();
 
-        $this->info('Tag created!');
+        $this->info("Tag “{$tag->name}” created.");
     }
 }

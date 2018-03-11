@@ -30,4 +30,14 @@ _Arguments_
 _Options_  
 `--description[=DESCRIPTION]` The description of the tag  
 
+#### Delete an existing tag
+
+    $ verbal tag:delete ID [OPTIONS]
+
+_Arguments_  
+`ID` The ID of the tag  
+
+_Options_  
+`-f, --force` Skip confirmation  
+
 

@@ -20,6 +20,17 @@ _Options_
 `--sort=COLUMN` Sort by the specified column  
 `--reverse` Reverse sort order  
 
+#### Edit an existing tag
+
+    $ verbal tag:edit ID [OPTIONS]
+
+_Arguments_  
+`ID` The ID of the tag  
+
+_Options_  
+`--name[=NAME]` The name of the tag  
+`--description[=DESCRIPTION]` The description of the tag  
+
 #### Add a new tag
 
     $ verbal tag:add NAME [OPTIONS]

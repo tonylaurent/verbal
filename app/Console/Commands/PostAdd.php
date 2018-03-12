@@ -5,6 +5,8 @@ use Illuminate\Http\File;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
+use League\CommonMark\Converter;
+
 use App\Tag;
 use App\Post;
 
@@ -17,7 +19,7 @@ class PostAdd extends Command
      */
     protected $signature = 'post:add
         {title : The title of the post}
-        {--summary= : The summary of the post}            
+        {--summary= : The summary of the post}
         {--content= : The content of the post}
         {--content-file= : The path of the content file}
         {--image= : The path of the image file}
@@ -31,14 +33,21 @@ class PostAdd extends Command
      */
     protected $description = 'Add a new post';
 
+    /** @var League\CommonMark\Converter $convert The converter instance. */
+    private $converter;
+
     /**
      * Create a new command instance.
      *
+     * @param League\CommonMark\Converter $convert The converter instance.
+     *
      * @return void
      */
-    public function __construct()
+    public function __construct(Converter $converter)
     {
         parent::__construct();
+
+        $this->converter = $converter;
     }
 
     /**
@@ -52,14 +61,20 @@ class PostAdd extends Command
             'title' => $this->argument('title'),
             'summary' => $this->option('summary'),
             'image' => $this->option('image')
-        ];        
-        
-        if ($content = $this->option('content')) {
-            $inputs['content'] = $content;
+        ];
+
+        if ($contentString = $this->option('content')) {
+            $content = $contentString;
         } elseif ($contentFile = $this->option('content-file')) {
-            $inputs['content'] = file_get_contents($contentFile);
+            $content = file_get_contents($contentFile);
         }
-        
+
+        if ($content) {
+            $inputs['content'] = $this
+                ->converter
+                ->convertToHtml($content);
+        }
+
         $tags = Tag::whereIn('name', $this->option('tag'))->get();
 
         if ($inputs['image']) {

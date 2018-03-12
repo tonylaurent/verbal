@@ -8,7 +8,7 @@ Getting started
 
 Create your first post
 
-    $ verbal post:add "My first post"--content="
+    $ verbal post:add "My first post" --content="
     > # Hello world!
     > This is my first paragraph.
     >
@@ -34,11 +34,11 @@ Documentation
 
     $ verbal post:browse [OPTIONS]
 
-_Options_
-`--show=COLUMN` Show the specified column (multiple values allowed)
-`--hide=COLUMN` Hide the specified column (multiple values allowed)
-`--sort=COLUMN` Sort by the specified column
-`--reverse` Reverse sort order
+_Options_  
+`--show=COLUMN` Show the specified column (multiple values allowed)  
+`--hide=COLUMN` Hide the specified column (multiple values allowed)  
+`--sort=COLUMN` Sort by the specified column  
+`--reverse` Reverse sort order  
 
 ### Tags
 
@@ -48,48 +48,48 @@ _Options_
 
     $ verbal tag:browse [OPTIONS]
 
-_Options_
-`--show=COLUMN` Show the specified column (multiple values allowed)
-`--hide=COLUMN` Hide the specified column (multiple values allowed)
-`--sort=COLUMN` Sort by the specified column
-`--reverse` Reverse sort order
+_Options_  
+`--show=COLUMN` Show the specified column (multiple values allowed)  
+`--hide=COLUMN` Hide the specified column (multiple values allowed)  
+`--sort=COLUMN` Sort by the specified column  
+`--reverse` Reverse sort order  
 
 #### Read an existing tag
 
     $ verbal tag:read ID
 
-_Arguments_
+_Arguments_  
 `ID` The ID of the tag
 
 #### Edit an existing tag
 
     $ verbal tag:edit ID [OPTIONS]
 
-_Arguments_
-`ID` The ID of the tag
+_Arguments_  
+`ID` The ID of the tag  
 
-_Options_
-`--name[=NAME]` The name of the tag
-`--description[=DESCRIPTION]` The description of the tag
+_Options_  
+`--name[=NAME]` The name of the tag  
+`--description[=DESCRIPTION]` The description of the tag  
 
 #### Add a new tag
 
     $ verbal tag:add NAME [OPTIONS]
 
-_Arguments_
-`NAME` The name of the tag
+_Arguments_  
+`NAME` The name of the tag  
 
-_Options_
-`--description[=DESCRIPTION]` The description of the tag
+_Options_  
+`--description[=DESCRIPTION]` The description of the tag  
 
 #### Delete an existing tag
 
     $ verbal tag:delete ID [OPTIONS]
 
-_Arguments_
-`ID` The ID of the tag
+_Arguments_  
+`ID` The ID of the tag  
 
-_Options_
-`--force` Skip confirmation
+_Options_  
+`--force` Skip confirmation  
 
 

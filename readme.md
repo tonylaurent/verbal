@@ -6,7 +6,11 @@ Verbal is the blog engine for command lines addicts.
 Getting started
 ---------------
 
-Create your first post
+Create your first post:
+
+    $ verbal post:add "My first post" --content="# Hello world!"
+
+With a multi lines content:
 
     $ verbal post:add "My first post" --content="
     > # Hello world!

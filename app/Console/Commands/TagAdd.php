@@ -3,6 +3,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use League\CLImate\CLImate as Climate;
+
 use App\Tag;
 
 class TagAdd extends Command
@@ -29,9 +31,11 @@ class TagAdd extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Climate $climate)
     {
         parent::__construct();
+
+        $this->climate = $climate;
     }
 
     /**
@@ -50,6 +54,9 @@ class TagAdd extends Command
         $tag->fill($inputs);
         $tag->save();
 
-        $this->info("Tag “{$tag->name}” added.");
+        $this
+            ->climate
+            ->green()
+            ->json($tag);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace App\Console\Commands;
 
-use League\CLImate\CLImate;
+use League\CLImate\CLImate as Climate;
 
 use Illuminate\Console\Command;
 
@@ -30,7 +30,7 @@ class TagRead extends Command
      *
      * @return void
      */
-    public function __construct(CLImate $climate)
+    public function __construct(Climate $climate)
     {
         parent::__construct();
         
@@ -47,10 +47,9 @@ class TagRead extends Command
         $id = $this->argument('id');
 
         $tag = Tag::find($id);
-        
-        $this->line("Name: {$tag->name}");
-        $this->line("Description: {$tag->description}");
-        $this->line("Created at: {$tag->created_at}");
-        $this->line("Updated at: {$tag->updated_at}");
+
+        $this
+            ->climate
+            ->json($tag);
     }
 }

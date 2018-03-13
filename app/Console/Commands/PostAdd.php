@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
 use League\CommonMark\Converter;
+use League\CLImate\CLImate as Climate;
 
 use App\Tag;
 use App\Post;
@@ -21,8 +22,8 @@ class PostAdd extends Command
         {title : The title of the post}
         {--summary= : The summary of the post}
         {--content= : The content of the post}
-        {--content-file= : The path of the content file}
-        {--image= : The path of the image file}
+        {--content-path= : The path of the content file}
+        {--image-path= : The path of the image file}
         {--tag=* : The tag of the post}
     ';
 
@@ -33,20 +34,25 @@ class PostAdd extends Command
      */
     protected $description = 'Add a new post';
 
+    /** @var League\CLImate\CLImate $climate The climate instance. */
+    private $climate;
+
     /** @var League\CommonMark\Converter $convert The converter instance. */
     private $converter;
 
     /**
      * Create a new command instance.
      *
+     * @param League\CLImate\CLImate $climate The climate instance.
      * @param League\CommonMark\Converter $convert The converter instance.
      *
      * @return void
      */
-    public function __construct(Converter $converter)
+    public function __construct(Climate $climate, Converter $converter)
     {
         parent::__construct();
 
+        $this->climate = $climate;
         $this->converter = $converter;
     }
 
@@ -59,28 +65,13 @@ class PostAdd extends Command
     {
         $inputs = [
             'title' => $this->argument('title'),
-            'summary' => $this->option('summary'),
-            'image' => $this->option('image')
+            'summary' => $this->option('summary')
         ];
 
-        if ($contentString = $this->option('content')) {
-            $content = $contentString;
-        } elseif ($contentFile = $this->option('content-file')) {
-            $content = file_get_contents($contentFile);
-        }
-
-        if ($content) {
-            $inputs['content'] = $this
-                ->converter
-                ->convertToHtml($content);
-        }
+        $inputs['content'] = $this->content($this->option());
+        $inputs['image-path'] = $this->image($this->option());
 
         $tags = Tag::whereIn('name', $this->option('tag'))->get();
-
-        if ($inputs['image']) {
-            $inputs['image_path'] = Storage::disk('public')
-                ->putFile(null, new File($inputs['image']));
-        }
 
         $post = new Post;
         $post->fill($inputs);
@@ -90,6 +81,60 @@ class PostAdd extends Command
             ->tags()
             ->attach($tags);
 
-        $this->info("Post “{$post->title}” added.");
+        $this
+            ->climate
+            ->green()
+            ->json($post);
+    }
+
+    /**
+     * Content.
+     *
+     * @param array $options
+     *
+     * @return null|string The processed content.
+     */
+    private function content(array $options): ?string
+    {
+        if ($options['content']) {
+            $content = $options['content'];
+        } elseif ($options['content-path']) {
+            $path = $options['content-path'];
+            
+            if (file_exists($path)) {
+                $content = file_get_contents($path);
+            } else {
+                $content = null;
+            }
+        } else {
+            $content = null;
+        }
+
+        if ($content) {
+            $content = $this
+                ->converter
+                ->convertToHtml($content);
+        }
+
+        return $content;
+    }
+
+    /**
+     * Image.
+     *
+     * @param array $options
+     *
+     * @return null|string The image path.
+     */
+    private function image(array $options): ?string
+    {
+        $path = $options['image-path'];
+        
+        if (!$path || !file_exists($path)) {
+            return null;
+        }
+
+        return Storage::disk('public')
+            ->putFile(null, new File($path));
     }
 }

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Converter;
 use League\CLImate\CLImate as Climate;
 
+use Carbon\Carbon;
+
 use App\Tag;
 use App\Post;
 
@@ -19,12 +21,13 @@ class PostAdd extends Command
      * @var string
      */
     protected $signature = 'post:add
-        {title : The title of the post}
-        {--summary= : The summary of the post}
-        {--content= : The content of the post}
-        {--content-path= : The path of the content file}
-        {--image-path= : The path of the image file}
-        {--tag=* : The tag of the post}
+        {title : Set the post title}
+        {--summary= : Set the post summary}
+        {--content= : Set the post content}
+        {--content-path= : Set the path of the content file}
+        {--image-path= : Set image path of the post}
+        {--date= : Set the post date}
+        {--tag=* : Categorize post with tags}
     ';
 
     /**
@@ -63,13 +66,17 @@ class PostAdd extends Command
      */
     public function handle()
     {
+        $date = Carbon::parse($this->option('date'));
+        
         $inputs = [
             'title' => $this->argument('title'),
-            'summary' => $this->option('summary')
+            'summary' => $this->option('summary'),
+            'content' => $this->content($this->option(), $date),
+            'image-path' => $this->image($this->option()),
+            'datetime' => $date->toDateString()
         ];
-
-        $inputs['content'] = $this->content($this->option());
-        $inputs['image-path'] = $this->image($this->option());
+        
+        //~ dd($inputs);
 
         $tags = Tag::whereIn('name', $this->option('tag'))->get();
 
@@ -94,7 +101,7 @@ class PostAdd extends Command
      *
      * @return null|string The processed content.
      */
-    private function content(array $options): ?string
+    private function content(array $options, $date): ?string
     {
         if ($options['content']) {
             $content = $options['content'];
@@ -111,9 +118,12 @@ class PostAdd extends Command
         }
 
         if ($content) {
-            $content = $this
-                ->converter
-                ->convertToHtml($content);
+            $file = "{$date->year}/{$date->month}/{$date->year}-{$date->month}-{$date->day}.md";
+            
+            Storage::put($file, $content);            
+            //~ $content = $this
+                //~ ->converter
+                //~ ->convertToHtml($content);
         }
 
         return $content;

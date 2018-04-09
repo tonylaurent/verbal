@@ -24,8 +24,7 @@ class PostAdd extends Command
         {title : Set the post title}
         {--summary= : Set the post summary}
         {--content= : Set the post content}
-        {--content-path= : Set the path of the content file}
-        {--image-path= : Set image path of the post}
+        {--image= : Set image path of the post}
         {--date= : Set the post date}
         {--tag=* : Categorize post with tags}
     ';
@@ -66,24 +65,20 @@ class PostAdd extends Command
      */
     public function handle()
     {
-        $date = Carbon::parse($this->option('date'));
-        
         $inputs = [
             'title' => $this->argument('title'),
             'summary' => $this->option('summary'),
-            'content' => $this->content($this->option(), $date),
-            'image-path' => $this->image($this->option()),
-            'datetime' => $date->toDateString()
+            'content' => $this->option('content'),
+            'date' => $this->option('date'),
+            'image_path' => $this->option('image')
         ];
         
-        //~ dd($inputs);
-
         $tags = Tag::whereIn('name', $this->option('tag'))->get();
 
         $post = new Post;
         $post->fill($inputs);
         $post->save();
-
+        
         $post
             ->tags()
             ->attach($tags);
@@ -95,41 +90,6 @@ class PostAdd extends Command
     }
 
     /**
-     * Content.
-     *
-     * @param array $options
-     *
-     * @return null|string The processed content.
-     */
-    private function content(array $options, $date): ?string
-    {
-        if ($options['content']) {
-            $content = $options['content'];
-        } elseif ($options['content-path']) {
-            $path = $options['content-path'];
-            
-            if (file_exists($path)) {
-                $content = file_get_contents($path);
-            } else {
-                $content = null;
-            }
-        } else {
-            $content = null;
-        }
-
-        if ($content) {
-            $file = "{$date->year}/{$date->month}/{$date->year}-{$date->month}-{$date->day}.md";
-            
-            Storage::put($file, $content);            
-            //~ $content = $this
-                //~ ->converter
-                //~ ->convertToHtml($content);
-        }
-
-        return $content;
-    }
-
-    /**
      * Image.
      *
      * @param array $options
@@ -138,7 +98,7 @@ class PostAdd extends Command
      */
     private function image(array $options): ?string
     {
-        $path = $options['image-path'];
+        $path = $options['image'];
         
         if (!$path || !file_exists($path)) {
             return null;

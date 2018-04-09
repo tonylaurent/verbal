@@ -47,8 +47,6 @@ class PostAdd extends Command
      *
      * @param League\CLImate\CLImate $climate The climate instance.
      * @param League\CommonMark\Converter $convert The converter instance.
-     *
-     * @return void
      */
     public function __construct(Climate $climate, Converter $converter)
     {
@@ -61,19 +59,20 @@ class PostAdd extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $inputs = [
             'title' => $this->argument('title'),
             'summary' => $this->option('summary'),
             'content' => $this->option('content'),
             'date' => $this->option('date'),
-            'image_path' => $this->option('image')
+            'image_path' => $this->option('image'),
+            'tags' => $this->option('tag')
         ];
         
-        $tags = Tag::whereIn('name', $this->option('tag'))->get();
+        $tags = Tag::whereIn('name', $inputs['tags'])->get();
 
         $post = new Post;
         $post->fill($inputs);

@@ -58,7 +58,6 @@ _Arguments_
 _Options_  
 `--summary=SUMMARY` Set a short description of the post  
 `--content=CONTENT` Set content of the post in markdown format  
-`--content-path=PATH` Get markdown content from a file  
 `--image-path=PATH` Set an image for the post  
 `--tag=tag` Categorize the post with a tag name (multiple values allowed)  
 

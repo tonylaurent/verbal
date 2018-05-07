@@ -2,6 +2,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use League\CLImate\CLImate;
 
 use App\Tag;
 
@@ -29,9 +30,11 @@ class TagDelete extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CLImate $climate)
     {
         parent::__construct();
+        
+        $this->climate = $climate;
     }
 
     /**
@@ -57,6 +60,6 @@ class TagDelete extends Command
 
         $tag->delete();
 
-        $this->info("Tag “{$tag->name}” deleted.");
+        $this->climate->json($tag);
     }
 }

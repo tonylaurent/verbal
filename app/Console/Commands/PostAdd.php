@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
 use League\CommonMark\Converter;
-use League\CLImate\CLImate as Climate;
+use League\CLImate\CLImate;
 
 use Carbon\Carbon;
 
@@ -24,7 +24,7 @@ class PostAdd extends Command
         {title : Set the post title}
         {--summary= : Set the post summary}
         {--content= : Set the post content}
-        {--image= : Set image path of the post}
+        {--image= : Set the post image}
         {--date= : Set the post date}
         {--tag=* : Categorize post with tags}
     ';
@@ -39,21 +39,16 @@ class PostAdd extends Command
     /** @var League\CLImate\CLImate $climate The climate instance. */
     private $climate;
 
-    /** @var League\CommonMark\Converter $convert The converter instance. */
-    private $converter;
-
     /**
      * Create a new command instance.
      *
      * @param League\CLImate\CLImate $climate The climate instance.
-     * @param League\CommonMark\Converter $convert The converter instance.
      */
-    public function __construct(Climate $climate, Converter $converter)
+    public function __construct(Climate $climate)
     {
         parent::__construct();
 
         $this->climate = $climate;
-        $this->converter = $converter;
     }
 
     /**
@@ -68,7 +63,7 @@ class PostAdd extends Command
             'summary' => $this->option('summary'),
             'content' => $this->option('content'),
             'date' => $this->option('date'),
-            'image_path' => $this->option('image'),
+            'image' => $this->option('image'),
             'tags' => $this->option('tag')
         ];
         
@@ -84,7 +79,6 @@ class PostAdd extends Command
 
         $this
             ->climate
-            ->green()
             ->json($post);
     }
 

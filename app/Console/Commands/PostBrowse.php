@@ -5,6 +5,8 @@ use Illuminate\Console\Command;
 
 use App\Post;
 
+use League\CLImate\CLImate;
+
 class PostBrowse extends Command
 {
     /**
@@ -31,9 +33,11 @@ class PostBrowse extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CLImate $climate)
     {
         parent::__construct();
+
+        $this->climate = $climate;
     }
 
     /**

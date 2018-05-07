@@ -18,7 +18,7 @@ class Post extends Model
         'title',
         'summary',
         'content',
-        'image_path',   
+        'image',   
         'date'
     ];
 

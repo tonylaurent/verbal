@@ -1,22 +1,21 @@
 <?php
-
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use League\CLImate\CLImate;
+
+use Illuminate\Console\Command;
 
 use App\Post;
 
-class PostDelete extends Command
+class PostRead extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'post:delete
+    protected $signature = 'post:read
         {id : The ID of the post}
-        {--force : Skip confirmation}
     ';
 
     /**
@@ -24,7 +23,7 @@ class PostDelete extends Command
      *
      * @var string
      */
-    protected $description = 'Delete a post';
+    protected $description = 'Read an existing post';
 
     /**
      * Create a new command instance.
@@ -45,21 +44,9 @@ class PostDelete extends Command
      */
     public function handle()
     {
-        $post = Post::find(
-            $this->argument('id')
-        );
-        
-        if (!$post) {
-            return $this->comment("Post not found.");
-        }
+        $id = $this->argument('id');
 
-        if (!$this->option('force')) {
-            if (!$this->confirm('Are you sure to delete?')) {
-                return $this->comment("Post “{$post->title}” not deleted.");
-            }
-        }
-
-        $post->delete();
+        $post = Post::find($id);
 
         $this
             ->climate

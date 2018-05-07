@@ -26,7 +26,7 @@ class CreatePostsTable extends Migration
                 ->nullable();
 
             $table
-                ->string('image_path')
+                ->string('image')
                 ->nullable();
                 
             $table

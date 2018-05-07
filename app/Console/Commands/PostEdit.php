@@ -4,8 +4,9 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use League\CommonMark\Converter;
-use League\CLImate\CLImate as Climate;
+use League\CLImate\CLImate;
 
+use App\Tag;
 use App\Post;
 
 class PostEdit extends Command
@@ -17,6 +18,12 @@ class PostEdit extends Command
      */
     protected $signature = 'post:edit
         {id : The ID of the post to edit}
+        {--title= : Set the post title}
+        {--summary= : Set the post summary}
+        {--content= : Set the post content}
+        {--image= : Set image of the post}
+        {--date= : Set the post date}
+        {--tag=* : Categorize post with tags}
     ';
 
     /**
@@ -29,23 +36,18 @@ class PostEdit extends Command
     /** @var League\CLImate\CLImate $climate The climate instance. */
     private $climate;
 
-    /** @var League\CommonMark\Converter $convert The converter instance. */
-    private $converter;
-
     /**
      * Create a new command instance.
      *
      * @param League\CLImate\CLImate $climate The climate instance.
-     * @param League\CommonMark\Converter $convert The converter instance.
      *
      * @return void
      */
-    public function __construct(Climate $climate, Converter $converter)
+    public function __construct(CLImate $climate)
     {
         parent::__construct();
 
         $this->climate = $climate;
-        $this->converter = $converter;
     }
 
     /**
@@ -55,68 +57,28 @@ class PostEdit extends Command
      */
     public function handle()
     {
-        $post = Post::find($this->argument('id'));
-        
-        if (!$post) {
-            return $this->comment("Post not found.");
-        }                
-        
-        $name = $this->anticipate('>>>', [$post->content]);
-        
         $inputs = [
-            'title' => $this->argument('title'),
-            'summary' => $this->option('summary')
+            'title' => $this->option('title'),
+            'summary' => $this->option('summary'),
+            'content' => $this->option('content'),
+            'date' => $this->option('date'),
+            'image_path' => $this->option('image'),
+            'tags' => $this->option('tag')
         ];
-
-        $inputs['content'] = $this->content($this->option());
-        $inputs['image-path'] = $this->image($this->option());
-
-        $tags = Tag::whereIn('name', $this->option('tag'))->get();
+        
+        $tags = Tag::whereIn('name', $inputs['tags'])->get();
 
         $post = new Post;
         $post->fill($inputs);
         $post->save();
-
+        
         $post
             ->tags()
             ->attach($tags);
 
         $this
             ->climate
-            ->green()
-            ->json($post);
-    }
-
-    /**
-     * Content.
-     *
-     * @param array $options
-     *
-     * @return null|string The processed content.
-     */
-    private function content(array $options): ?string
-    {
-        if ($options['content']) {
-            $content = $options['content'];
-        } elseif ($options['content-path']) {
-            $path = $options['content-path'];
-            
-            if (file_exists($path)) {
-                $content = file_get_contents($path);
-            } else {
-                $content = null;
-            }
-        } else {
-            $content = null;
-        }
-
-        if ($content) {
-            $content = $this
-                ->converter
-                ->convertToHtml($content);
-        }
-
-        return $content;
+            ->json($post);        
     }
 
     /**

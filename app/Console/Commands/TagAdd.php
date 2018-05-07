@@ -56,7 +56,6 @@ class TagAdd extends Command
 
         $this
             ->climate
-            ->green()
             ->json($tag);
     }
 }

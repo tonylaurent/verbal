@@ -22,7 +22,7 @@ class PostEdit extends Command
         {--summary= : Set the post summary}
         {--content= : Set the post content}
         {--image= : Set image of the post}
-        {--date= : Set the post date}
+        {--datetime= : Set the post datetime}
         {--tag=* : Categorize post with tags}
     ';
 
@@ -61,7 +61,7 @@ class PostEdit extends Command
             'title' => $this->option('title'),
             'summary' => $this->option('summary'),
             'content' => $this->option('content'),
-            'date' => $this->option('date'),
+            'datetime' => $this->option('datetime'),
             'image_path' => $this->option('image'),
             'tags' => $this->option('tag')
         ];

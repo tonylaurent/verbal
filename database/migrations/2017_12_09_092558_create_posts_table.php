@@ -30,8 +30,7 @@ class CreatePostsTable extends Migration
                 ->nullable();
                 
             $table
-                ->dateTime('date')
-                ->nullable();                
+                ->timestamp('datetime');
             
             $table->timestamps();
         });

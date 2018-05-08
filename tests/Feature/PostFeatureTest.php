@@ -19,12 +19,48 @@ class PostFeatureTest extends TestCase
      */
     public function testAdd(): void
     {
-        $output = shell_exec('php artisan post:add foo --summary="foo bar" --content="foo bar baz"');
+        $output = shell_exec('
+            php artisan post:add foo \
+                --summary="foo bar" \
+                --content="foo bar baz"
+        ');
         
         $this->assertRegExp('/"title": "foo"/', $output);     
         $this->assertRegExp('/"summary": "foo bar"/', $output);
         $this->assertRegExp('/"content": "foo bar baz"/', $output);
     }
+
+    /**
+     * Test post add with a missing title.
+     *
+     * @return void
+     */
+    public function testAddWithMissingTitle(): void
+    {
+        $output = shell_exec('php artisan post:add');
+        
+        $this->assertRegExp(
+            '/Not enough arguments \(missing: "title"\)./', 
+            $output
+        );     
+    }
+    
+    /**
+     * Test post add with invalid datetime.
+     *
+     * @return void
+     */
+    public function testAddWithInvalidDatetime(): void
+    {
+        $output = shell_exec(
+            'php artisan post:add foo --datetime="2000/01/01"'
+        );
+        
+        $this->assertRegExp(
+            '/The datetime does not match the format yyyy-mm-dd hh:mm:ss./', 
+            $output
+        );     
+    }    
     
     /**
      * Test post browse.
@@ -59,7 +95,13 @@ class PostFeatureTest extends TestCase
     public function testEdit(): void
     {
         $post = Post::get()->last();
-        $output = shell_exec("php artisan post:edit {$post->id} --title=bar --summary='bar baz' --content='bar baz qux'");
+        
+        $output = shell_exec("
+            php artisan post:edit {$post->id} \
+                --title=bar \
+                --summary='bar baz' \
+                --content='bar baz qux'
+        ");
 
         $this->assertRegExp('/"title": "bar"/', $output);     
         $this->assertRegExp('/"summary": "bar baz"/', $output);         
@@ -74,7 +116,10 @@ class PostFeatureTest extends TestCase
     public function testDelete(): void
     {
         $post = Post::get()->last();
-        $output = shell_exec("php artisan post:delete {$post->id} --force");
+        
+        $output = shell_exec("
+            php artisan post:delete {$post->id} --force"
+        );
 
         $this->assertRegExp("/\"title\": \"{$post->title}\"/", $output);     
     }

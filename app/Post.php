@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Tag;
 
+use Carbon\Carbon;
+
 class Post extends Model
 {
     /**
@@ -19,7 +21,7 @@ class Post extends Model
         'summary',
         'content',
         'image',   
-        'date'
+        'datetime'
     ];
 
     /**
@@ -28,5 +30,19 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+        
+    /**
+     * Set the post’s datetime.
+     *
+     * @param null|string $value The datetime value.
+     * 
+     * @return void
+     */    
+    public function setDatetimeAttribute(string $value = null): void
+    {
+        $now = Carbon::now()->toDateTimeString();
+        
+        $this->attributes['datetime'] = $value ?: $now;
     }
 }

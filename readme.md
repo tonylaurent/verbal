@@ -19,9 +19,9 @@ If you need a multi-line content, type enter after the double quote:
     > This is the second paragraph.
     > "
 
-You can set a custom date instead of use the current timestamp:
+You can custom the post date instead of use the current timestamp:
 
-    $ verbal post:add "My first post" --date="2018-01-01 12:30:00"
+    $ verbal post:add "My first post" --datetime="2018-01-01 12:30:00"
 
 Set an image path to illustrate your post:
 
@@ -62,7 +62,7 @@ _Options_
 `--content="CONTENT"` Set a content of the post in markdown format  
 `--date="YYYY-MM-DD MM:HH:SS"` Set a date for the post  
 `--image="PATH"` Set an image for the post  
-`--tag="tag"` Categorize the post with a tag name (multiple values allowed)  
+`--tag="TAG"` Categorize the post with a tag name (multiple values allowed)  
 
 #### Browse all posts
 

@@ -13,6 +13,8 @@ use Carbon\Carbon;
 use App\Tag;
 use App\Post;
 
+use Validator;
+
 class PostAdd extends Command
 {
     /**
@@ -25,7 +27,7 @@ class PostAdd extends Command
         {--summary= : Set the post summary}
         {--content= : Set the post content}
         {--image= : Set the post image}
-        {--date= : Set the post date}
+        {--datetime= : Set the post datetime}
         {--tag=* : Categorize post with tags}
     ';
 
@@ -62,10 +64,26 @@ class PostAdd extends Command
             'title' => $this->argument('title'),
             'summary' => $this->option('summary'),
             'content' => $this->option('content'),
-            'date' => $this->option('date'),
+            'datetime' => $this->option('datetime'),
             'image' => $this->option('image'),
             'tags' => $this->option('tag')
         ];
+        
+        $validator = Validator::make($inputs, [
+            'datetime' => 'nullable|date_format:Y-m-d H:i:s'
+        ], [
+            'datetime.date_format' => 'The datetime does not match the format yyyy-mm-dd hh:mm:ss.'
+        ]);      
+        
+        if ($validator->fails()) {
+           $errors = $validator->errors();
+           
+            foreach ($errors->all() as $error) {
+                $this->error($error);
+            }
+            
+            return;
+        }         
         
         $tags = Tag::whereIn('name', $inputs['tags'])->get();
 

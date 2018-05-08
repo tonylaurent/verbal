@@ -10,7 +10,7 @@ Write your first post (the content must be in markdown format):
 
     $ verbal post:add "My first post" --summary="This is my first post" --content="# Hello world!"
 
-If you need a multi-line content, type enter after the double quote:
+If you need a multi-line content, type enter after the first double quote and finish with an other double quote:
 
     $ verbal post:add "My first post" --summary="This is my first post" --content="
     > # Hello world!
@@ -23,7 +23,7 @@ You can custom the post date instead of use the current timestamp:
 
     $ verbal post:add "My first post" --datetime="2018-01-01 12:30:00"
 
-Set an image path to illustrate your post:
+Add an image to illustrate your post:
 
     $ verbal post:add "My first post" --image="/home/tony/picture.png"
 

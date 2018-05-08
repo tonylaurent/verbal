@@ -65,10 +65,9 @@ class PostAdd extends Command
             'summary' => $this->option('summary'),
             'content' => $this->option('content'),
             'datetime' => $this->option('datetime'),
-            'image' => $this->option('image'),
             'tags' => $this->option('tag')
         ];
-        
+
         $validator = Validator::make($inputs, [
             'datetime' => 'nullable|date_format:Y-m-d H:i:s'
         ], [
@@ -83,7 +82,20 @@ class PostAdd extends Command
             }
             
             return;
-        }         
+        }
+        
+        if ($imagePath = $this->option('image')) {
+            if (!file_exists($imagePath)) {
+                $this->error('Image not found.');
+                
+                return;                
+            }
+            
+            $inputs['image'] = Storage::disk('public')->putFile(
+                'posts', 
+                new File($imagePath)
+            );
+        }                 
         
         $tags = Tag::whereIn('name', $inputs['tags'])->get();
 
@@ -98,24 +110,5 @@ class PostAdd extends Command
         $this
             ->climate
             ->json($post);
-    }
-
-    /**
-     * Image.
-     *
-     * @param array $options
-     *
-     * @return null|string The image path.
-     */
-    private function image(array $options): ?string
-    {
-        $path = $options['image'];
-        
-        if (!$path || !file_exists($path)) {
-            return null;
-        }
-
-        return Storage::disk('public')
-            ->putFile(null, new File($path));
     }
 }

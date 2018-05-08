@@ -3,11 +3,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use Illuminate\Http\File;
 use League\CommonMark\Converter;
 use League\CLImate\CLImate;
 
 use App\Tag;
 use App\Post;
+
+use Illuminate\Support\Facades\Storage;
 
 class PostEdit extends Command
 {
@@ -62,9 +65,21 @@ class PostEdit extends Command
             'summary' => $this->option('summary'),
             'content' => $this->option('content'),
             'datetime' => $this->option('datetime'),
-            'image_path' => $this->option('image'),
             'tags' => $this->option('tag')
         ];
+        
+        if ($imagePath = $this->option('image')) {
+            if (!file_exists($imagePath)) {
+                $this->error('Image not found.');
+                
+                return;                
+            }
+            
+            $inputs['image'] = Storage::disk('public')->putFile(
+                'posts', 
+                new File($imagePath)
+            );
+        }        
         
         $tags = Tag::whereIn('name', $inputs['tags'])->get();
 
@@ -79,24 +94,5 @@ class PostEdit extends Command
         $this
             ->climate
             ->json($post);        
-    }
-
-    /**
-     * Image.
-     *
-     * @param array $options
-     *
-     * @return null|string The image path.
-     */
-    private function image(array $options): ?string
-    {
-        $path = $options['image-path'];
-        
-        if (!$path || !file_exists($path)) {
-            return null;
-        }
-
-        return Storage::disk('public')
-            ->putFile(null, new File($path));
     }
 }

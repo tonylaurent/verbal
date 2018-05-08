@@ -19,7 +19,7 @@ If you need a multi-line content, type enter after the first double quote and fi
     > This is the second paragraph.
     > "
 
-You can custom the post date instead of use the current timestamp:
+You can custom the post datetime instead of use the default current timestamp:
 
     $ verbal post:add "My first post" --datetime="2018-01-01 12:30:00"
 

@@ -4,8 +4,8 @@
 @section('description', $post->summary)
 
 @section('content')
-    @if ($post->image_path)
-        <img src="/storage/{{ $post->image_path }}" style="width: 100%" />
+    @if ($post->image)
+        <img src="/storage/{{ $post->image }}" style="width: 100%" />
     @endif
 
     <div>

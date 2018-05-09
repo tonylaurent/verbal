@@ -40,6 +40,8 @@ Usage
     - [Read an existing post](#add-an-existing-post)
     - [Edit an existing post](#edit-an-existing-post)
     - [Delete an existing post](#delete-an-existing-post)
+    - [Tag an existing post](#tag-an-existing-post)
+    - [Untag an existing post](#untag-an-existing-post)
 - [Tags](#tags)
     - [Add a new tag](#add-a-new-tag)
     - [Browse all tags](#browse-all-tags)
@@ -104,6 +106,26 @@ _Arguments_
 
 _Options_  
 `--force` Skip confirmation  
+
+#### Tag an existing post
+
+    $ verbal post:tag ID [OPTIONS]
+
+_Arguments_  
+`ID` The ID of the post to tag  
+
+_Options_  
+`--tag="NAME"` The tag’s name to add (multiple values allowed)  
+
+#### Untag an existing post
+
+    $ verbal post:untag ID [OPTIONS]
+
+_Arguments_  
+`ID` The ID of the post to untag  
+
+_Options_  
+`--tag="NAME"` The tag’s name to remove (multiple values allowed)   
 
 ### Tags ###
 

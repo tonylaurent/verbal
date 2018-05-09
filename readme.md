@@ -6,13 +6,17 @@ Verbal is the blog engine for command lines addicts.
 Getting started
 ---------------
 
+First, create a tag to categorize your post:
+
+    $ verbal tag:add "Foo" --description="This is my first tag"
+
 Write your first post (the content must be in markdown format):
 
-    $ verbal post:add "My first post" --summary="This is my first post" --content="# Hello world!"
+    $ verbal post:add "My first post" --tag="Foo" --summary="This is my first post" --content="# Hello world!"
 
 If you need a multi-line content, type enter after the first double quote and finish with an other double quote:
 
-    $ verbal post:add "My first post" --summary="This is my first post" --content="
+    $ verbal post:add "My first post" --tag="Foo" --summary="This is my first post" --content="
     > # Hello world!
     > This is the first paragraph.
     >
@@ -23,13 +27,9 @@ You can custom the post datetime instead of use the default current timestamp:
 
     $ verbal post:add "My first post" --datetime="2018-01-01 12:30:00"
 
-Add an image to illustrate your post:
+Maybe add an image to illustrate your post?
 
     $ verbal post:add "My first post" --image="/home/tony/picture.png"
-
-Create a tag to categorize your post:
-
-    $ verbal tag:add "Foo" --description="This is my first tag"
 
 Usage
 -----

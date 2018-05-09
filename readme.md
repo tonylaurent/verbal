@@ -8,15 +8,15 @@ Getting started
 
 First, create a tag to categorize your post:
 
-    $ verbal tag:add "Foo" --description="This is my first tag"
+    $ php artisan tag:add "Foo" --description="This is my first tag"
 
 Write your first post (the content must be in markdown format):
 
-    $ verbal post:add "My first post" --tag="Foo" --summary="This is my first post" --content="# Hello world!"
+    $ php artisan post:add "My first post" --tag="Foo" --summary="This is my first post" --content="# Hello world!"
 
 If you need a multi-line content, type enter after the first double quote and finish with an other double quote:
 
-    $ verbal post:add "My first post" --tag="Foo" --summary="This is my first post" --content="
+    $ php artisan post:add "My first post" --tag="Foo" --summary="This is my first post" --content="
     > # Hello world!
     > This is the first paragraph.
     >
@@ -25,11 +25,11 @@ If you need a multi-line content, type enter after the first double quote and fi
 
 You can custom the post datetime instead of use the default current timestamp:
 
-    $ verbal post:add "My first post" --datetime="2018-01-01 12:30:00"
+    $ php artisan post:add "My first post" --datetime="2018-01-01 12:30:00"
 
 Maybe add an image to illustrate your post?
 
-    $ verbal post:add "My first post" --image="/home/tony/picture.png"
+    $ php artisan post:add "My first post" --image="/home/tony/picture.png"
 
 Usage
 -----
@@ -53,7 +53,7 @@ Usage
 
 #### Add a new post
 
-    $ verbal post:add TITLE [OPTIONS]
+    $ php artisan post:add TITLE [OPTIONS]
 
 _Arguments_  
 `"TITLE"` The title of the post to add  
@@ -67,7 +67,7 @@ _Options_
 
 #### Browse all posts
 
-    $ verbal post:browse [OPTIONS]
+    $ php artisan post:browse [OPTIONS]
 
 _Options_  
 `--show="COLUMN"` Show the specified column (multiple values allowed)  
@@ -77,14 +77,14 @@ _Options_
 
 #### Read an existing post
 
-    $ verbal post:read ID
+    $ php artisan post:read ID
 
 _Arguments_  
 `ID` The ID of the post to read  
 
 #### Edit an existing post
 
-    $ verbal post:edit ID [OPTIONS]
+    $ php artisan post:edit ID [OPTIONS]
 
 _Arguments_  
 `ID` The ID of the post to edit
@@ -99,7 +99,7 @@ _Options_
 
 #### Delete an existing post
 
-    $ verbal post:delete ID [OPTIONS]
+    $ php artisan post:delete ID [OPTIONS]
 
 _Arguments_  
 `ID` The ID of the post to delete  
@@ -109,7 +109,7 @@ _Options_
 
 #### Tag an existing post
 
-    $ verbal post:tag ID [OPTIONS]
+    $ php artisan post:tag ID [OPTIONS]
 
 _Arguments_  
 `ID` The ID of the post to tag  
@@ -119,7 +119,7 @@ _Options_
 
 #### Untag an existing post
 
-    $ verbal post:untag ID [OPTIONS]
+    $ php artisan post:untag ID [OPTIONS]
 
 _Arguments_  
 `ID` The ID of the post to untag  
@@ -131,7 +131,7 @@ _Options_
 
 #### Add a new tag
 
-    $ verbal tag:add NAME [OPTIONS]
+    $ php artisan tag:add NAME [OPTIONS]
 
 _Arguments_  
 `"NAME"` The name of the tag to add    
@@ -141,7 +141,7 @@ _Options_
 
 #### Browse all tags
 
-    $ verbal tag:browse [OPTIONS]
+    $ php artisan tag:browse [OPTIONS]
 
 _Options_  
 `--show="COLUMN"` Show the specified column (multiple values allowed)  
@@ -151,14 +151,14 @@ _Options_
 
 #### Read an existing tag
 
-    $ verbal tag:read ID
+    $ php artisan tag:read ID
 
 _Arguments_  
 `ID` The ID of the tag to read  
 
 #### Edit an existing tag
 
-    $ verbal tag:edit ID [OPTIONS]
+    $ php artisan tag:edit ID [OPTIONS]
 
 _Arguments_  
 `ID` The ID of the tag to edit   
@@ -169,7 +169,7 @@ _Options_
 
 #### Delete an existing tag
 
-    $ verbal tag:delete ID [OPTIONS]
+    $ php artisan tag:delete ID [OPTIONS]
 
 _Arguments_  
 `ID` The ID of the tag to delete  

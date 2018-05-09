@@ -95,7 +95,7 @@ class PostEdit extends Command
         
         $post
             ->tags()
-            ->sync($tags);
+            ->syncWithoutDetaching($tags);
 
         $this
             ->climate

@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         if (Schema::hasTable('tags')) {
-            View::share('tags', Tag::all());
+            View::share('tags', Tag::has('posts')->get());
         }
     }
 

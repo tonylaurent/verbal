@@ -31,7 +31,6 @@ Create a tag to categorize your post:
 
     $ verbal tag:add "Foo" --description="This is my first tag"
 
-
 Usage
 -----
 
@@ -55,13 +54,13 @@ Usage
     $ verbal post:add TITLE [OPTIONS]
 
 _Arguments_  
-`"TITLE"` The title of the post  
+`"TITLE"` The title of the post to add  
 
 _Options_  
-`--summary="SUMMARY"` Set a short description of the post  
-`--content="CONTENT"` Set a content of the post in markdown format  
-`--date="YYYY-MM-DD MM:HH:SS"` Set a date for the post  
-`--image="PATH"` Set an image for the post  
+`--summary="SUMMARY"` Set the post’s summary  
+`--content="CONTENT"` Set the post’s content (markdown format)  
+`--datetime="YYYY-MM-DD MM:HH:SS"` Set the post’s datetime  
+`--image="PATH"` Set the post’s image  
 `--tag="TAG"` Categorize the post with a tag name (multiple values allowed)  
 
 #### Browse all posts
@@ -69,9 +68,9 @@ _Options_
     $ verbal post:browse [OPTIONS]
 
 _Options_  
-`--show=COLUMN` Show the specified column (multiple values allowed)  
-`--hide=COLUMN` Hide the specified column (multiple values allowed)  
-`--sort=COLUMN` Sort by the specified column  
+`--show="COLUMN"` Show the specified column (multiple values allowed)  
+`--hide="COLUMN"` Hide the specified column (multiple values allowed)  
+`--sort="COLUMN"` Sort by the specified column  
 `--reverse` Reverse sort order  
 
 #### Read an existing post
@@ -79,27 +78,29 @@ _Options_
     $ verbal post:read ID
 
 _Arguments_  
-`ID` The ID of the post  
+`ID` The ID of the post to read  
 
 #### Edit an existing post
 
     $ verbal post:edit ID [OPTIONS]
 
 _Arguments_  
-`ID` The ID of the post  
+`ID` The ID of the post to edit
 
 _Options_  
-`--title[=TITLE]` The title of the post    
-`--summary[=SUMMARY]` The summary of the post  
-`--image-path=PATH` Set an image for the post  
-`--tag=tag` Categorize the post with a tag name (multiple values allowed)  
+`--title="TITLE"` Change the post’s title  
+`--summary="SUMMARY"` Change the post’s summary  
+`--content="CONTENT"` Change the post’s content (markdown format)  
+`--datetime="YYYY-MM-DD MM:HH:SS"` Change the post’s datetime  
+`--image="PATH"` Change the post’s image  
+`--tag="NAME"` Categorize the post with a tag (multiple values allowed)  
 
 #### Delete an existing post
 
     $ verbal post:delete ID [OPTIONS]
 
 _Arguments_  
-`ID` The ID of the post  
+`ID` The ID of the post to delete  
 
 _Options_  
 `--force` Skip confirmation  
@@ -113,19 +114,19 @@ _Options_
     $ verbal tag:add NAME [OPTIONS]
 
 _Arguments_  
-`NAME` The name of the tag  
+`"NAME"` The name of the tag to add    
 
 _Options_  
-`--description[=DESCRIPTION]` The description of the tag  
+`--description="DESCRIPTION"` Set the tag’s description  
 
 #### Browse all tags
 
     $ verbal tag:browse [OPTIONS]
 
 _Options_  
-`--show=COLUMN` Show the specified column (multiple values allowed)  
-`--hide=COLUMN` Hide the specified column (multiple values allowed)  
-`--sort=COLUMN` Sort by the specified column  
+`--show="COLUMN"` Show the specified column (multiple values allowed)  
+`--hide="COLUMN"` Hide the specified column (multiple values allowed)  
+`--sort="COLUMN"` Sort by the specified column  
 `--reverse` Reverse sort order  
 
 #### Read an existing tag
@@ -133,25 +134,25 @@ _Options_
     $ verbal tag:read ID
 
 _Arguments_  
-`ID` The ID of the tag  
+`ID` The ID of the tag to read  
 
 #### Edit an existing tag
 
     $ verbal tag:edit ID [OPTIONS]
 
 _Arguments_  
-`ID` The ID of the tag  
+`ID` The ID of the tag to edit   
 
 _Options_  
-`--name[=NAME]` The name of the tag  
-`--description[=DESCRIPTION]` The description of the tag  
+`--name="NAME"` Change the tag’s name  
+`--description="DESCRIPTION"` Change the tag’s description  
 
 #### Delete an existing tag
 
     $ verbal tag:delete ID [OPTIONS]
 
 _Arguments_  
-`ID` The ID of the tag  
+`ID` The ID of the tag to delete  
 
 _Options_  
 `--force` Skip confirmation  

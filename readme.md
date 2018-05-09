@@ -61,7 +61,7 @@ _Options_
 `--content="CONTENT"` Set the post’s content (markdown format)  
 `--datetime="YYYY-MM-DD MM:HH:SS"` Set the post’s datetime  
 `--image="PATH"` Set the post’s image  
-`--tag="TAG"` Categorize the post with a tag name (multiple values allowed)  
+`--tag="NAME"` Categorize the post with a tag name (multiple values allowed)  
 
 #### Browse all posts
 
@@ -106,8 +106,6 @@ _Options_
 `--force` Skip confirmation  
 
 ### Tags ###
-
-> Tags allow to categorize posts.
 
 #### Add a new tag
 

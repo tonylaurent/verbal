@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use Illuminate\Http\File;
-use League\CommonMark\Converter;
 use League\CLImate\CLImate;
 
 use App\Tag;
@@ -60,13 +59,19 @@ class PostEdit extends Command
      */
     public function handle()
     {
-        $inputs = [
+        $post = Post::find($this->argument('id'));
+        
+        $options = [
             'title' => $this->option('title'),
             'summary' => $this->option('summary'),
             'content' => $this->option('content'),
             'datetime' => $this->option('datetime'),
             'tags' => $this->option('tag')
         ];
+        
+        $inputs = array_filter($options, function ($option) {
+            return !is_null($option);
+        });
         
         if ($imagePath = $this->option('image')) {
             if (!file_exists($imagePath)) {
@@ -75,21 +80,22 @@ class PostEdit extends Command
                 return;                
             }
             
+            Storage::delete($post->image);
+            
             $inputs['image'] = Storage::disk('public')->putFile(
                 'posts', 
                 new File($imagePath)
             );
         }        
         
-        $tags = Tag::whereIn('name', $inputs['tags'])->get();
-
-        $post = new Post;
         $post->fill($inputs);
         $post->save();
         
+        $tags = Tag::whereIn('name', $inputs['tags'])->get();
+        
         $post
             ->tags()
-            ->attach($tags);
+            ->sync($tags);
 
         $this
             ->climate

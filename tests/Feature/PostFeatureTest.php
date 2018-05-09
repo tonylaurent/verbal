@@ -103,7 +103,7 @@ class PostFeatureTest extends TestCase
         $post = Post::get()->last();
         $output = shell_exec("php artisan post:read {$post->id}");
         
-        $this->assertRegExp("/\"title\": \"{$post->title}\"/", $output);        
+        $this->assertRegExp("/\"title\": \"{$post->title}\"/", $output);
     }
     
     /**
@@ -124,11 +124,12 @@ class PostFeatureTest extends TestCase
                 --image="' . resource_path() . '/tests/red.png"
         ');
 
-        $this->assertRegExp('/"title": "bar"/', $output);     
-        $this->assertRegExp('/"summary": "bar baz"/', $output);         
-        $this->assertRegExp('/"content": "bar baz qux"/', $output);         
+        $this->assertRegExp('/"id": ' . $post->id . '/', $output);
+        $this->assertRegExp('/"title": "bar"/', $output);
+        $this->assertRegExp('/"summary": "bar baz"/', $output);     
+        $this->assertRegExp('/"content": "bar baz qux"/', $output);
         $this->assertRegExp('/"datetime": "1970-12-31 18:15:06"/', $output);
-        $this->assertRegExp('/"image": "(.*).png"/', $output);    
+        $this->assertRegExp('/"image": "(.*).png"/', $output);
     }
 
     /**

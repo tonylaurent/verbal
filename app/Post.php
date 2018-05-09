@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Markdown;
+use Carbon\Carbon;
+
 use App\User;
 use App\Tag;
-
-use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -44,5 +45,15 @@ class Post extends Model
         $now = Carbon::now()->toDateTimeString();
         
         $this->attributes['datetime'] = $value ?: $now;
+    }
+    
+    /**
+     * Get the post’s HTML.
+     *
+     * @return string The converted content to HTML.
+     */    
+    public function getHtmlAttribute(): string
+    {
+        return Markdown::convertToHtml($this->content);
     }
 }

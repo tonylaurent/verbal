@@ -51,6 +51,18 @@ class TagFeatureTest extends TestCase
     }
     
     /**
+     * Test tag read not found.
+     *
+     * @return void
+     */    
+    public function testReadNotFound(): void
+    {
+        $output = shell_exec("php artisan tag:read 0");
+        
+        $this->assertRegExp("/Tag not found./", $output);
+    }    
+    
+    /**
      * Test tag edit.
      *
      * @return void
@@ -65,6 +77,18 @@ class TagFeatureTest extends TestCase
     }
 
     /**
+     * Test post edit not found.
+     *
+     * @return void
+     */    
+    public function testEditNotFound(): void
+    {
+        $output = shell_exec("php artisan tag:edit 0");
+        
+        $this->assertRegExp("/Tag not found./", $output);
+    }
+
+    /**
      * Test tag delete.
      *
      * @return void
@@ -76,4 +100,16 @@ class TagFeatureTest extends TestCase
 
         $this->assertRegExp("/\"name\": \"{$tag->name}\"/", $output);     
     }
+    
+    /**
+     * Test post delete not found.
+     *
+     * @return void
+     */    
+    public function testDeleteNotFound(): void
+    {
+        $output = shell_exec("php artisan tag:delete 0");
+        
+        $this->assertRegExp("/Tag not found./", $output);
+    }    
 }

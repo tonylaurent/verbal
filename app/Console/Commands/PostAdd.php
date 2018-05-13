@@ -56,9 +56,9 @@ class PostAdd extends Command
     /**
      * Execute the console command.
      *
-     * @return void
+     * @return null|League\CLImate\CLImate
      */
-    public function handle(): void
+    public function handle(): ?CLImate
     {
         $inputs = [
             'title' => $this->argument('title'),
@@ -78,17 +78,19 @@ class PostAdd extends Command
            $errors = $validator->errors();
            
             foreach ($errors->all() as $error) {
-                $this->error($error);
+                $this
+                    ->climate
+                    ->red($error);
             }
             
-            return;
+            return null;
         }
         
         if ($imagePath = $this->option('image')) {
             if (!file_exists($imagePath)) {
-                $this->error('Image not found.');
-                
-                return;                
+                return $this
+                    ->climate
+                    ->error('Image not found.');
             }
             
             $inputs['image'] = Storage::disk('public')->putFile(
@@ -107,8 +109,8 @@ class PostAdd extends Command
             ->tags()
             ->attach($tags);
 
-        $this
+        return $this
             ->climate
-            ->json($post);
+            ->green('Post added.');
     }
 }

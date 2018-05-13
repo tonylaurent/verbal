@@ -27,11 +27,7 @@ class PostFeatureTest extends TestCase
                 --image="' . resource_path() . '/tests/blue.png"
         ');
         
-        $this->assertRegExp('/"title": "foo"/', $output);     
-        $this->assertRegExp('/"summary": "foo bar"/', $output);
-        $this->assertRegExp('/"content": "foo bar baz"/', $output);
-        $this->assertRegExp('/"datetime": "1970-01-01 12:30:15"/', $output);
-        $this->assertRegExp('/"image": "(.*).png"/', $output);
+        $this->assertRegExp('/Post added./', $output);     
     }
 
     /**
@@ -103,7 +99,19 @@ class PostFeatureTest extends TestCase
         $post = Post::get()->last();
         $output = shell_exec("php artisan post:read {$post->id}");
         
-        $this->assertRegExp("/\"title\": \"{$post->title}\"/", $output);
+        $this->assertRegExp("/title: {$post->title}/", $output);
+    }
+    
+    /**
+     * Test post read not found.
+     *
+     * @return void
+     */    
+    public function testReadNotFound(): void
+    {
+        $output = shell_exec("php artisan post:read 0");
+        
+        $this->assertRegExp("/Post not found./", $output);
     }
     
     /**
@@ -131,6 +139,18 @@ class PostFeatureTest extends TestCase
         $this->assertRegExp('/"datetime": "1970-12-31 18:15:06"/', $output);
         $this->assertRegExp('/"image": "(.*).png"/', $output);
     }
+    
+    /**
+     * Test post edit not found.
+     *
+     * @return void
+     */    
+    public function testEditNotFound(): void
+    {
+        $output = shell_exec("php artisan post:edit 0");
+        
+        $this->assertRegExp("/Post not found./", $output);
+    }    
 
     /**
      * Test post delete.
@@ -145,6 +165,18 @@ class PostFeatureTest extends TestCase
             php artisan post:delete {$post->id} --force"
         );
 
-        $this->assertRegExp("/\"title\": \"{$post->title}\"/", $output);     
+        $this->assertRegExp("/Post deleted./", $output);     
     }
+    
+    /**
+     * Test post delete not found.
+     *
+     * @return void
+     */    
+    public function testDeleteNotFound(): void
+    {
+        $output = shell_exec("php artisan post:delete 0");
+        
+        $this->assertRegExp("/Post not found./", $output);
+    }        
 }

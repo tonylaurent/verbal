@@ -45,11 +45,32 @@ class PostRead extends Command
     public function handle()
     {
         $id = $this->argument('id');
-
+        
         $post = Post::find($id);
+        
+        if (!$post) {
+            return $this
+                ->climate
+                ->red('Post not found.');
+        }        
 
-        $this
-            ->climate
-            ->json($post);
+        foreach ($post->toArray() as $name => $value) {
+            $this
+                ->climate
+                ->out("<green>{$name}:</green> {$value}");            
+        }
+        
+        if ($post->tags->count()) {
+            $tagNames = $post
+                ->tags
+                ->pluck('name')
+                ->toArray();
+            
+            $tags = implode(', ', $tagNames);
+
+            $this
+                ->climate
+                ->out("<green>Tags:</green> {$tags}");  
+        }
     }
 }

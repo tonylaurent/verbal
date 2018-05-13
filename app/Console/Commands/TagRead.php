@@ -47,9 +47,17 @@ class TagRead extends Command
         $id = $this->argument('id');
 
         $tag = Tag::find($id);
-
-        $this
-            ->climate
-            ->json($tag);
+        
+        if (!$tag) {
+            return $this
+                ->climate
+                ->red('Tag not found.');
+        }
+        
+        foreach ($tag->toArray() as $name => $value) {
+            $this
+                ->climate
+                ->out("<green>{$name}:</green> {$value}");
+        }
     }
 }

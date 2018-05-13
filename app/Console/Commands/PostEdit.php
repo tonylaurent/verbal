@@ -61,6 +61,11 @@ class PostEdit extends Command
     {
         $post = Post::find($this->argument('id'));
         
+        if (!$post) {
+            return $this
+                ->climate
+                ->error('Post not found.');
+        }        
         $options = [
             'title' => $this->option('title'),
             'summary' => $this->option('summary'),

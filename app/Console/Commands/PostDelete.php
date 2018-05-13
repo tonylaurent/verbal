@@ -50,19 +50,23 @@ class PostDelete extends Command
         );
         
         if (!$post) {
-            return $this->comment("Post not found.");
+            return $this
+                ->climate
+                ->error('Post not found.');
         }
 
         if (!$this->option('force')) {
             if (!$this->confirm('Are you sure to delete?')) {
-                return $this->comment("Post “{$post->title}” not deleted.");
+                return $this
+                    ->climate
+                    ->comment('Post not deleted.');
             }
         }
 
         $post->delete();
 
-        $this
+        return $this
             ->climate
-            ->json($post);
+            ->green('Post deleted.');
     }
 }

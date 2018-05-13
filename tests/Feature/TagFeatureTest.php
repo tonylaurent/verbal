@@ -47,7 +47,7 @@ class TagFeatureTest extends TestCase
         $tag = Tag::get()->last();
         $output = shell_exec("php artisan tag:read {$tag->id}");
         
-        $this->assertRegExp("/\"name\": \"{$tag->name}\"/", $output);        
+        $this->assertRegExp("/name: {$tag->name}/", $output);        
     }
     
     /**

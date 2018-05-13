@@ -33,7 +33,34 @@ class TagFeatureTest extends TestCase
     {
         $output = shell_exec("php artisan tag:browse");
         
-        $this->assertRegExp("/foo/", $output);
+        $this->assertRegExp("/\| id/", $output);
+        $this->assertRegExp("/\| name/", $output);
+    }
+
+    /**
+     * Test tag browse with hidden column.
+     *
+     * @return void
+     */
+    public function testBrowseWithHiddenColumn(): void
+    {
+        $output = shell_exec('php artisan tag:browse --hide="name"');
+        
+        $this->assertRegExp("/\| id/", $output);
+        $this->assertNotRegExp("/\| name/", $output);
+    }
+
+    /**
+     * Test tag browse with shown column.
+     *
+     * @return void
+     */
+    public function testBrowseWithShownColumn(): void
+    {
+        $output = shell_exec('php artisan tag:browse --show="name"');
+        
+        $this->assertNotRegExp("/\| id/", $output);
+        $this->assertRegExp("/\| name/", $output);
     }
 
     /**

@@ -21,8 +21,7 @@ class TagFeatureTest extends TestCase
     {
         $output = shell_exec('php artisan tag:add foo --description="foo bar"');
         
-        $this->assertRegExp('/"name": "foo"/', $output);     
-        $this->assertRegExp('/"description": "foo bar"/', $output);     
+        $this->assertRegExp('/Tag added./', $output);     
     }
     
     /**
@@ -72,8 +71,7 @@ class TagFeatureTest extends TestCase
         $tag = Tag::get()->last();
         $output = shell_exec("php artisan tag:edit {$tag->id} --name=bar --description='bar baz'");
 
-        $this->assertRegExp('/"name": "bar"/', $output);     
-        $this->assertRegExp('/"description": "bar baz"/', $output);         
+        $this->assertRegExp('/Tag updated./', $output);     
     }
 
     /**
@@ -98,7 +96,7 @@ class TagFeatureTest extends TestCase
         $tag = Tag::get()->last();
         $output = shell_exec("php artisan tag:delete {$tag->id} --force");
 
-        $this->assertRegExp("/\"name\": \"{$tag->name}\"/", $output);     
+        $this->assertRegExp("/Tag deleted./", $output);     
     }
     
     /**

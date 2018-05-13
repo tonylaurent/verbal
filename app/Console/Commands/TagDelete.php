@@ -49,17 +49,23 @@ class TagDelete extends Command
         );
         
         if (!$tag) {
-            return $this->comment("Tag not found.");
+            return $this
+                ->climate
+                ->error('Tag not found.');
         }
 
         if (!$this->option('force')) {
             if (!$this->confirm('Are you sure to delete?')) {
-                return $this->comment("Tag “{$tag->name}” not deleted.");
+                return $this
+                    ->climate
+                    ->comment('Tag not deleted.');
             }
         }
 
         $tag->delete();
 
-        $this->climate->json($tag);
+        return $this
+            ->climate
+            ->green('Tag deleted.');
     }
 }

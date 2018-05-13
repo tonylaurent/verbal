@@ -80,9 +80,11 @@ class PostEdit extends Command
         
         if ($imagePath = $this->option('image')) {
             if (!file_exists($imagePath)) {
-                $this->error('Image not found.');
+                $this
+                    ->climate
+                    ->error('Image not found.');
                 
-                return;                
+                return null;                
             }
             
             Storage::delete($post->image);
@@ -102,8 +104,8 @@ class PostEdit extends Command
             ->tags()
             ->syncWithoutDetaching($tags);
 
-        $this
+        return $this
             ->climate
-            ->json($post);        
+            ->green('Post updated.');       
     }
 }

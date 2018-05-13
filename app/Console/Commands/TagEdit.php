@@ -50,7 +50,9 @@ class TagEdit extends Command
         );
         
         if (!$tag) {
-            return $this->comment("Tag not found.");
+            return $this
+                ->climate
+                ->comment('Tag not found.');
         }        
         
         $inputs = array_filter($this->option(), function ($input) {
@@ -58,14 +60,16 @@ class TagEdit extends Command
         });
         
         if (!$inputs) {
-            return $this->comment("Tag “{$tag->name}” not updated.");
+            return $this
+                ->climate
+                ->comment('Tag not updated.');
         }          
 
         $tag->fill($inputs);
         $tag->save();
         
-        $this
+        return $this
             ->climate
-            ->json($tag);        
+            ->green('Tag updated.');   
     }
 }

@@ -54,8 +54,8 @@ class TagAdd extends Command
         $tag->fill($inputs);
         $tag->save();
 
-        $this
+        return $this
             ->climate
-            ->json($tag);
+            ->green('Tag added.');
     }
 }

@@ -51,7 +51,7 @@ class TagRead extends Command
         if (!$tag) {
             return $this
                 ->climate
-                ->red('Tag not found.');
+                ->error('Tag not found.');
         }
         
         foreach ($tag->toArray() as $name => $value) {

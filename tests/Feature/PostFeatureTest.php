@@ -132,12 +132,7 @@ class PostFeatureTest extends TestCase
                 --image="' . resource_path() . '/tests/red.png"
         ');
 
-        $this->assertRegExp('/"id": ' . $post->id . '/', $output);
-        $this->assertRegExp('/"title": "bar"/', $output);
-        $this->assertRegExp('/"summary": "bar baz"/', $output);     
-        $this->assertRegExp('/"content": "bar baz qux"/', $output);
-        $this->assertRegExp('/"datetime": "1970-12-31 18:15:06"/', $output);
-        $this->assertRegExp('/"image": "(.*).png"/', $output);
+        $this->assertRegExp('/Post updated./', $output);
     }
     
     /**

@@ -86,7 +86,34 @@ class PostFeatureTest extends TestCase
     {
         $output = shell_exec("php artisan post:browse");
         
-        $this->assertRegExp("/foo/", $output);
+        $this->assertRegExp("/\| id/", $output);
+        $this->assertRegExp("/\| title/", $output);        
+    }
+
+    /**
+     * Test post browse with hidden column.
+     *
+     * @return void
+     */
+    public function testBrowseWithHiddenColumn(): void
+    {
+        $output = shell_exec('php artisan post:browse --hide="title"');
+        
+        $this->assertRegExp("/\| id/", $output);
+        $this->assertNotRegExp("/\| title/", $output);
+    }
+
+    /**
+     * Test post browse with shown column.
+     *
+     * @return void
+     */
+    public function testBrowseWithShownColumn(): void
+    {
+        $output = shell_exec('php artisan post:browse --show="title"');
+        
+        $this->assertNotRegExp("/\| id/", $output);
+        $this->assertRegExp("/\| title/", $output);
     }
 
     /**

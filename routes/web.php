@@ -16,20 +16,25 @@ Route::get('/', function () {
         ->take(5)
         ->get();
     
-    return view('theme.home', [
+    return view('theme::home', [
         'posts' => $posts
     ]);
 })->name('home');
 
 Route::get('/posts/{post}', function (App\Post $post) {
-    return view('theme.post-show', [
+    return view('theme::post-show', [
         'post' => $post
     ]);
 })->name('post.show');
 
 Route::get('/tags/{tag}/posts', function (App\Tag $tag) {
-    return view('theme.post-list', [
-        'posts' => $tag->posts()->orderBy('id', 'desc')->get()
+    $posts = $tag
+        ->posts()
+        ->orderBy('id', 'desc')
+        ->get();
+    
+    return view('theme::post-list', [
+        'posts' => $posts 
     ]);
 })->name('tag.post');
 

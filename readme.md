@@ -27,7 +27,7 @@ You can custom the post datetime instead of use the default current timestamp:
 
     $ php artisan post:add "My first post" --datetime="2018-01-01 12:30:00"
 
-Maybe add an image to illustrate your post?
+Maybe need a picture to illustrate your post?
 
     $ php artisan post:add "My first post" --image="/home/tony/picture.png"
 

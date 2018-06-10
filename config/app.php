@@ -168,7 +168,7 @@ return [
          * Package Service Providers...
          */
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
-        Verbal\Theme\Bootstrap\ThemeServiceProvider::class,
+        //~ Verbal\Theme\Bootstrap\ThemeServiceProvider::class,
 
         /*
          * Application Service Providers...

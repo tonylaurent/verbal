@@ -11,7 +11,8 @@
         "graham-campbell/markdown": "^10.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "league/climate": "^3.2"
+        "league/climate": "^3.2",
+        "tonylaurent/verbal-theme-bootstrap": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

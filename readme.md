@@ -3,6 +3,8 @@ About
 
 Verbal is the blog engine for command lines addicts.
 
+[![Build Status](https://travis-ci.org/tonylaurent/verbal.svg?branch=master)](https://travis-ci.org/tonylaurent/verbal)
+
 Getting started
 ---------------
 

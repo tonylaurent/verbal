@@ -46,7 +46,7 @@ class PostAdd extends Command
      *
      * @param League\CLImate\CLImate $climate The climate instance.
      */
-    public function __construct(Climate $climate)
+    public function __construct(CLImate $climate)
     {
         parent::__construct();
 

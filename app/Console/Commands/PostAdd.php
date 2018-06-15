@@ -56,9 +56,9 @@ class PostAdd extends Command
     /**
      * Execute the console command.
      *
-     * @return null|League\CLImate\CLImate
+     * @return mixed
      */
-    public function handle(): ?CLImate
+    public function handle()
     {
         $inputs = [
             'title' => $this->argument('title'),

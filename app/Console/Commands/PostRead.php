@@ -29,6 +29,9 @@ class PostRead extends Command
      * @var string
      */
     protected $description = 'Read an existing post';
+    
+    /** @var League\CLImate\CLImate $climate The climate instance. */
+    private $climate;    
 
     /**
      * Create a new command instance.

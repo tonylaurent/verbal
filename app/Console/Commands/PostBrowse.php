@@ -32,6 +32,9 @@ class PostBrowse extends Command
      * @var string
      */
     protected $description = 'Browse all posts';
+    
+    /** @var League\CLImate\CLImate $climate The climate instance. */
+    private $climate;    
 
     /**
      * Create a new command instance.

@@ -30,6 +30,9 @@ class TagEdit extends Command
      * @var string
      */
     protected $description = 'Edit an existing tag';
+    
+    /** @var League\CLImate\CLImate $climate The climate instance. */
+    private $climate;    
 
     /**
      * Create a new command instance.

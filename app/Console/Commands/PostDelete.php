@@ -29,6 +29,9 @@ class PostDelete extends Command
      * @var string
      */
     protected $description = 'Delete a post';
+    
+    /** @var League\CLImate\CLImate $climate The climate instance. */
+    private $climate;    
 
     /**
      * Create a new command instance.

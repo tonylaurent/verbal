@@ -15,6 +15,11 @@ use App\Post;
 
 use Validator;
 
+/**
+ * Class PostAdd.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class PostAdd extends Command
 {
     /**

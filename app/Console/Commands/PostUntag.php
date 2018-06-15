@@ -11,6 +11,11 @@ use App\Post;
 
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Class PostUntag.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class PostUntag extends Command
 {
     /**

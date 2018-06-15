@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -7,6 +6,11 @@ use League\CLImate\CLImate;
 
 use App\Post;
 
+/**
+ * Class PostDelete.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class PostDelete extends Command
 {
     /**

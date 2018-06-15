@@ -7,6 +7,11 @@ use League\CLImate\CLImate as Climate;
 
 use App\Tag;
 
+/**
+ * Class TagAdd.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class TagAdd extends Command
 {
     /**

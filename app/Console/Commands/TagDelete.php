@@ -6,6 +6,11 @@ use League\CLImate\CLImate;
 
 use App\Tag;
 
+/**
+ * Class TagDelete.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class TagDelete extends Command
 {
     /**

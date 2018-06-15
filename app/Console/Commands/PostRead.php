@@ -7,6 +7,11 @@ use Illuminate\Console\Command;
 
 use App\Post;
 
+/**
+ * Class PostRead.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class PostRead extends Command
 {
     /**

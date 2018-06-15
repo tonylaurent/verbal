@@ -11,6 +11,11 @@ use App\Post;
 
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Class PostEdit.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class PostEdit extends Command
 {
     /**

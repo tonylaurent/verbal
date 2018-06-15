@@ -7,6 +7,11 @@ use Illuminate\Console\Command;
 
 use App\Tag;
 
+/**
+ * Class TagRead.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class TagRead extends Command
 {
     /**

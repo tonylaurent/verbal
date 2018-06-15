@@ -5,6 +5,11 @@ use Illuminate\Console\Command;
 
 use App\Tag;
 
+/**
+ * Class TagBrowse.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class TagBrowse extends Command
 {
     /**

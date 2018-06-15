@@ -11,6 +11,11 @@ use App\Post;
 
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Class PostTag.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class PostTag extends Command
 {
     /**

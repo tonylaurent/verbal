@@ -6,6 +6,11 @@ use League\CLImate\CLImate;
 
 use App\Tag;
 
+/**
+ * Class TagEdit.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class TagEdit extends Command
 {
     /**

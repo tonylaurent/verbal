@@ -7,6 +7,11 @@ use App\Post;
 
 use League\CLImate\CLImate;
 
+/**
+ * Class PostBrowse.
+ * 
+ * @author Tony Laurent <contact@tony-laurent.com>
+ */
 class PostBrowse extends Command
 {
     /**

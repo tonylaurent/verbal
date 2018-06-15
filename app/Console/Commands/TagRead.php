@@ -1,7 +1,7 @@
 <?php
 namespace App\Console\Commands;
 
-use League\CLImate\CLImate as Climate;
+use League\CLImate\CLImate;
 
 use Illuminate\Console\Command;
 
@@ -35,7 +35,7 @@ class TagRead extends Command
      *
      * @return void
      */
-    public function __construct(Climate $climate)
+    public function __construct(CLImate $climate)
     {
         parent::__construct();
         

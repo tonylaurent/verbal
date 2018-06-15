@@ -1,19 +1,17 @@
 <?php
 namespace App\Console\Commands;
 
-use Illuminate\Http\File;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-
-use League\CommonMark\Converter;
-use League\CLImate\CLImate;
-
-use Carbon\Carbon;
-
-use App\Tag;
-use App\Post;
+use Illuminate\{
+    Http\File,
+    Console\Command,
+    Support\Facades\Storage
+};
 
 use Validator;
+use Carbon\Carbon;
+use League\CLImate\CLImate;
+
+use App\{Tag, Post};
 
 /**
  * Class PostAdd.

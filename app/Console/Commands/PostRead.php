@@ -1,11 +1,9 @@
 <?php
 namespace App\Console\Commands;
 
-use League\CLImate\CLImate;
-
-use Illuminate\Console\Command;
-
 use App\Post;
+use League\CLImate\CLImate;
+use Illuminate\Console\Command;
 
 /**
  * Class PostRead.

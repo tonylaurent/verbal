@@ -1,15 +1,15 @@
 <?php
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
+use Illuminate\{
+    Http\File,
+    Console\Command,
+    Support\Facades\Storage
+};
 
-use Illuminate\Http\File;
 use League\CLImate\CLImate;
 
-use App\Tag;
-use App\Post;
-
-use Illuminate\Support\Facades\Storage;
+use App\{Tag, Post};
 
 /**
  * Class PostEdit.

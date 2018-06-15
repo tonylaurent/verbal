@@ -1,10 +1,9 @@
 <?php
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use League\CLImate\CLImate;
-
 use App\Tag;
+use League\CLImate\CLImate;
+use Illuminate\Console\Command;
 
 /**
  * Class TagDelete.

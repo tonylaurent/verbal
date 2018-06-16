@@ -30,6 +30,10 @@ Create your blog project with Composer:
 Start the built-in server and go to http://localhost:8000 (only for testing):
 
     php artisan serve
+    
+You can populate your blog with fake data:
+
+    php artisan db:seed
 
 Getting started
 ---------------

@@ -19,6 +19,7 @@ Verbal is built on Laravel and use SQLite as embedded database:
 - Tokenizer PHP Extension
 - XML PHP Extension
 - SQLite 3
+- Composer
 
 Installation
 ------------

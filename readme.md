@@ -5,6 +5,8 @@ About
 
 Verbal is the blog engine for command lines addicts.
 
+![Verbal](verbal.png?raw=true)
+
 Requirements
 ------------
 

@@ -35,6 +35,8 @@ Start the built-in server and go to http://localhost:8000 (only for testing):
 You can populate your blog with fake data:
 
     php artisan db:seed
+    
+Set your blog informations in the config file `config/blog.php`.
 
 Getting started
 ---------------

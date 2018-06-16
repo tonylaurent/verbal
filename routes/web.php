@@ -30,8 +30,8 @@ Route::get('/posts/{post}', function (App\Post $post) {
 Route::get('/tags/{tag}/posts', function (App\Tag $tag) {
     $posts = $tag
         ->posts()
-        ->orderBy('id', 'desc')
-        ->get();
+        ->orderBy('datetime', 'desc')
+        ->simplePaginate(10);
     
     return view('theme::post-list', [
         'posts' => $posts 

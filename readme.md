@@ -5,10 +5,29 @@ Verbal is the blog engine for command lines addicts.
 
 [![Build Status](https://travis-ci.org/tonylaurent/verbal.svg?branch=master)](https://travis-ci.org/tonylaurent/verbal)
 
+Requirements
+------------
+
+Verbal is built on Laravel and use SQLite as embedded database: 
+
+- PHP >= 7.0.0
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+- SQLite 3
+
 Installation
 ------------
 
+Create your blog project with Composer:
+
     composer create-project --prefer-dist tonylaurent/verbal blog dev-master
+    
+Start the built-in server and go to http://localhost:8000 (only for testing):
+
+    php artisan serve
 
 Getting started
 ---------------

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    $posts = App\Post::latest()
+    $posts = App\Post::orderBy('datetime', 'desc')
         ->take(5)
         ->get();
     

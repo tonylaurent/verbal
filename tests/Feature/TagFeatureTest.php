@@ -17,7 +17,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testAdd(): void
+    public function testAdd()
     {
         $output = shell_exec('php artisan tag:add foo --description="foo bar"');
         
@@ -29,7 +29,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testBrowse(): void
+    public function testBrowse()
     {
         $output = shell_exec("php artisan tag:browse");
         
@@ -42,7 +42,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testBrowseWithHiddenColumn(): void
+    public function testBrowseWithHiddenColumn()
     {
         $output = shell_exec('php artisan tag:browse --hide="name"');
         
@@ -55,7 +55,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testBrowseWithShownColumn(): void
+    public function testBrowseWithShownColumn()
     {
         $output = shell_exec('php artisan tag:browse --show="name"');
         
@@ -68,7 +68,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testRead(): void
+    public function testRead()
     {
         $tag = Tag::get()->last();
         $output = shell_exec("php artisan tag:read {$tag->id}");
@@ -81,7 +81,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testReadNotFound(): void
+    public function testReadNotFound()
     {
         $output = shell_exec("php artisan tag:read 0");
         
@@ -93,7 +93,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testEdit(): void
+    public function testEdit()
     {
         $tag = Tag::get()->last();
         $output = shell_exec("php artisan tag:edit {$tag->id} --name=bar --description='bar baz'");
@@ -106,7 +106,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testEditNotFound(): void
+    public function testEditNotFound()
     {
         $output = shell_exec("php artisan tag:edit 0");
         
@@ -118,7 +118,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testDelete(): void
+    public function testDelete()
     {
         $tag = Tag::get()->last();
         $output = shell_exec("php artisan tag:delete {$tag->id} --force");
@@ -131,7 +131,7 @@ class TagFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testDeleteNotFound(): void
+    public function testDeleteNotFound()
     {
         $output = shell_exec("php artisan tag:delete 0");
         

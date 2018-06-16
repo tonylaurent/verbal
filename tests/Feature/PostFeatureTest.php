@@ -17,7 +17,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testAdd(): void
+    public function testAdd()
     {
         $output = shell_exec('
             php artisan post:add foo \
@@ -35,7 +35,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testAddWithMissingTitle(): void
+    public function testAddWithMissingTitle()
     {
         $output = shell_exec('php artisan post:add');
         
@@ -50,7 +50,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testAddWithInvalidDatetime(): void
+    public function testAddWithInvalidDatetime()
     {
         $output = shell_exec(
             'php artisan post:add foo --datetime="01/01/2000 12h30"'
@@ -67,7 +67,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testAddWithImageNotFound(): void
+    public function testAddWithImageNotFound()
     {
         $output = shell_exec('
             php artisan post:add foo \
@@ -82,7 +82,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testBrowse(): void
+    public function testBrowse()
     {
         $output = shell_exec("php artisan post:browse");
         
@@ -95,7 +95,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testBrowseWithHiddenColumn(): void
+    public function testBrowseWithHiddenColumn()
     {
         $output = shell_exec('php artisan post:browse --hide="title"');
         
@@ -108,7 +108,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */
-    public function testBrowseWithShownColumn(): void
+    public function testBrowseWithShownColumn()
     {
         $output = shell_exec('php artisan post:browse --show="title"');
         
@@ -121,7 +121,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testRead(): void
+    public function testRead()
     {
         $post = Post::get()->last();
         $output = shell_exec("php artisan post:read {$post->id}");
@@ -134,7 +134,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testReadNotFound(): void
+    public function testReadNotFound()
     {
         $output = shell_exec("php artisan post:read 0");
         
@@ -146,7 +146,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testEdit(): void
+    public function testEdit()
     {
         $post = Post::get()->last();
         
@@ -167,7 +167,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testEditNotFound(): void
+    public function testEditNotFound()
     {
         $output = shell_exec("php artisan post:edit 0");
         
@@ -179,7 +179,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testDelete(): void
+    public function testDelete()
     {
         $post = Post::get()->last();
         
@@ -195,7 +195,7 @@ class PostFeatureTest extends TestCase
      *
      * @return void
      */    
-    public function testDeleteNotFound(): void
+    public function testDeleteNotFound()
     {
         $output = shell_exec("php artisan post:delete 0");
         

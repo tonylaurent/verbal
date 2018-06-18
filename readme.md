@@ -28,7 +28,7 @@ Create your blog project with Composer:
 
     composer create-project --prefer-dist tonylaurent/verbal blog dev-master
     
-Start the built-in server and go to http://localhost:8000 (only for testing):
+Move to your project directory, start the built-in server and go to http://localhost:8000 (only for testing):
 
     php artisan serve
     
